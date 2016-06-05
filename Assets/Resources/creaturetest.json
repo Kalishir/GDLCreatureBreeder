@@ -1,5 +1,6 @@
 {
   "type": 1,
   "name": "Some dragon",
-  "maxHealth": 100
+  "maxHealth": 100,
+  "value":  50 
 }

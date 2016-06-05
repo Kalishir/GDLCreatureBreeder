@@ -1,6 +1,6 @@
 ﻿
 /// <summary>
-/// Contains data of a single creature type.
+/// Contains the data of a creature type.
 /// </summary>
 public struct CreatureData
 {
@@ -20,4 +20,5 @@ public struct CreatureData
     public CreatureType type;
     public string name;
     public int maxHealth;
+    public int value;
 }

@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 413102}
   - 114: {fileID: 11457760}
   m_Layer: 0
-  m_Name: Monster
+  m_Name: Creature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,8 +40,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c6436020a3dd74583c9a27c0b7355f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  name: 
   health: 0
   libido: 0
 --- !u!1001 &100100000

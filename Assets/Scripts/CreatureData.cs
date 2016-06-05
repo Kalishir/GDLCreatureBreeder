@@ -1,8 +1,8 @@
 ﻿
 
-public struct MonsterData
+public struct CreatureData
 {
-    public enum MonsterType {
+    public enum CreatureType {
         Slime,
         Dragon,
         Griffon,
@@ -15,7 +15,7 @@ public struct MonsterData
         Avian
     }
 
-    public MonsterType type;
+    public CreatureType type;
     public string name;
     public int maxHealth;
 }

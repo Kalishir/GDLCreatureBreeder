@@ -95,7 +95,7 @@ GameObject:
   - 4: {fileID: 547563940}
   - 114: {fileID: 547563939}
   m_Layer: 0
-  m_Name: Monster Manager
+  m_Name: Creature Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126d3a76343638441a41bb2b7ba3a888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 153666, guid: 31a2c8caeed1be342ba9348e318c8a21, type: 2}
+  creaturePrefab: {fileID: 153666, guid: 31a2c8caeed1be342ba9348e318c8a21, type: 2}
 --- !u!4 &547563940
 Transform:
   m_ObjectHideFlags: 0

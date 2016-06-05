@@ -1,5 +1,7 @@
 ﻿
-
+/// <summary>
+/// Contains data of a single creature type.
+/// </summary>
 public struct CreatureData
 {
     public enum CreatureType {

@@ -2,40 +2,27 @@
 
 public class Monster : MonoBehaviour
 {
-    public enum CreatureType {
-        Slime,
-        Dragon,
-        Griffon,
-        Nymph,
-        Equine,
-        Demon,
-        Beast,
-        Golem,
-        Bug,
-        Avian
-    }
+    private MonsterData monsterData;
 
-    [SerializeField] private CreatureType type;
-    public CreatureType Type
+    public MonsterData.MonsterType Type
     {
-        get { return type; }
-        private set { type = value; }
+        get { return monsterData.type; }
     }
-
-    [SerializeField] private string name;
-    public string Name {
-        get { return name; }
-        set {
-            name = value;
-            gameObject.name = name; // Set gameobject name to match creature name.
-        }
+    
+    public string MonsterName {
+        get { return monsterData.name; }
     }
 
     [SerializeField] private int health;
     public int Health
     {
         get { return health; }
-        private set { health = value; }
+        private set
+        {
+            health = value;
+            if (health > monsterData.maxHealth)
+                health = monsterData.maxHealth;
+        }
     }
 
     [SerializeField] private int libido;
@@ -43,5 +30,13 @@ public class Monster : MonoBehaviour
     {
         get { return libido; }
         private set { libido = value; }
+    }
+
+    public void SetMonsterData(MonsterData data)
+    {
+        monsterData = data;
+        gameObject.name = monsterData.name;
+        health = monsterData.maxHealth;
+        libido = 100; // Hardcoded default for now.
     }
 }

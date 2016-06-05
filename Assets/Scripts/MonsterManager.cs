@@ -8,6 +8,9 @@ public class MonsterManager : MonoBehaviour
     {
         // TODO: Remove test.
         GameObject monsterGameObject = Instantiate(monsterPrefab);
-        JsonUtility.FromJsonOverwrite(Resources.Load<TextAsset>("monstertest").text, monsterGameObject.GetComponent<Monster>());
+        var monsterData = JsonUtility.FromJson<MonsterData>(Resources.Load<TextAsset>("monstertest").text);
+        monsterGameObject.GetComponent<Monster>().SetMonsterData(monsterData);
+
+        Debug.Log("Created a " + monsterData.type);
     }
 }

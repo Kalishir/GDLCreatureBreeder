@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Creature : MonoBehaviour
+public class Monster : MonoBehaviour
 {
     public enum CreatureType {
         Slime,

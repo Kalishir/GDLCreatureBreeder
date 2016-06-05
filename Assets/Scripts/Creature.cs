@@ -2,6 +2,9 @@
 
 public class Creature : MonoBehaviour
 {
+    // The data of the creature.
+    // For example CreatureData holds info about what a Pikachu is.
+    // Creature class (this) holds info about a Pikachu instance.
     private CreatureData creatureData;
 
     public CreatureData.CreatureType Type
@@ -11,6 +14,10 @@ public class Creature : MonoBehaviour
     
     public string CreatureName {
         get { return creatureData.name; }
+    }
+
+    public int Value {
+        get { return creatureData.value; }
     }
 
     [SerializeField] private int health;

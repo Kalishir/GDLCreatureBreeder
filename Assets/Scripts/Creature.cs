@@ -24,11 +24,13 @@ public class Creature : MonoBehaviour
     public int Health
     {
         get { return health; }
-        private set
+        set
         {
             health = value;
             if (health > creatureData.maxHealth)
                 health = creatureData.maxHealth;
+            if (health < 0)
+                health = 0;
         }
     }
 
@@ -36,7 +38,12 @@ public class Creature : MonoBehaviour
     public int Libido
     {
         get { return libido; }
-        private set { libido = value; }
+        set
+        {
+            libido = value;
+            if (libido < 0)
+                libido = 0;
+        }
     }
 
     public void SetCreatureData(CreatureData data)

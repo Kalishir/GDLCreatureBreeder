@@ -7,10 +7,21 @@ public class CreatureManager : MonoBehaviour
     private void Start()
     {
         // TODO: Remove test.
-        GameObject creatureGameObject = Instantiate(creaturePrefab);
-        var creatureData = JsonUtility.FromJson<CreatureData>(Resources.Load<TextAsset>("creaturetest").text);
-        creatureGameObject.GetComponent<Creature>().SetCreatureData(creatureData);
+        Creature creature = SpawnCreature("creaturetest");
+        Debug.Log("Created a " + creature.Type);
+    }
 
-        Debug.Log("Created a " + creatureData.type);
+    /// <summary>
+    /// Spawns a creature into the scene.
+    /// </summary>
+    /// <param name="fileName">The json filename of the creature without extension.</param>
+    private Creature SpawnCreature(string fileName)
+    {
+        GameObject creatureGameObject = Instantiate(creaturePrefab);
+        var creatureData = JsonUtility.FromJson<CreatureData>(Resources.Load<TextAsset>(fileName).text);
+        var creature = creatureGameObject.GetComponent<Creature>();
+        creature.SetCreatureData(creatureData);
+
+        return creature;
     }
 }

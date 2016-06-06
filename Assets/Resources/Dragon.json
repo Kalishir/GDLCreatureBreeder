@@ -1,6 +1,6 @@
 {
   "type": 1,
-  "name": "Test creature.",
+  "name": "Dragon",
   "maxHealth": 100,
   "value":  50 
 }

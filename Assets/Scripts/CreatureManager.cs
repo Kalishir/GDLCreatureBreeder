@@ -8,6 +8,7 @@ public class CreatureManager : MonoBehaviour
     // Values used for breeding.
     private const int lowerCreatureHealth = 50;
     private const int lowerCreatureLibido = 50;
+    private const int breedingValueDeviation = 30; // How much the randomized value of the bred creature can be different from its base value.
 
     private void Start()
     {
@@ -47,6 +48,8 @@ public class CreatureManager : MonoBehaviour
             creature2.Libido -= lowerCreatureLibido;
 
             retVal = SpawnCreature(creature1.Type.ToString());
+            int baseValue = retVal.Value;
+            retVal.Value = Random.Range(baseValue - breedingValueDeviation, baseValue + breedingValueDeviation);
         }
         return retVal;
     }

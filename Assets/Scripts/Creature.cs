@@ -2,6 +2,8 @@
 
 public class Creature : MonoBehaviour
 {
+    private const int maxLibido = 100; // Hardcoded for every creature for now.
+
     // The data of the creature.
     // For example CreatureData holds info about what a Pikachu is.
     // Creature class (this) holds info about a Pikachu instance.
@@ -38,7 +40,12 @@ public class Creature : MonoBehaviour
     public int Libido
     {
         get { return libido; }
-        private set { libido = value; }
+        private set 
+        {
+            libido = value;
+            if (libido > maxLibido)
+                libido = maxLibido;
+        }
     }
 
     public void SetCreatureData(CreatureData data)

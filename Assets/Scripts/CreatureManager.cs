@@ -5,6 +5,10 @@ public class CreatureManager : MonoBehaviour
 {
     [SerializeField] private GameObject creaturePrefab;
 
+    // Values used for breeding.
+    private const int lowerCreatureHealth = 50;
+    private const int lowerCreatureLibido = 50;
+
     private void Start()
     {
         // TODO: Remove test.
@@ -37,6 +41,11 @@ public class CreatureManager : MonoBehaviour
         Creature retVal = null;
         if (creature1.Type == creature2.Type)
         {
+            creature1.Health -= lowerCreatureHealth; // Creatures lose health and libido on breeding.
+            creature1.Libido -= lowerCreatureLibido;
+            creature2.Health -= lowerCreatureHealth;
+            creature2.Libido -= lowerCreatureLibido;
+
             retVal = SpawnCreature(creature1.Type.ToString());
         }
         return retVal;

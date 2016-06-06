@@ -16,8 +16,10 @@ public class Creature : MonoBehaviour
         get { return creatureData.name; }
     }
 
+    [SerializeField] private int value;
     public int Value {
-        get { return creatureData.value; }
+        get { return value; }
+        set { this.value = value; }
     }
 
     [SerializeField] private int health;
@@ -51,6 +53,7 @@ public class Creature : MonoBehaviour
         creatureData = data;
         gameObject.name = creatureData.name;
         health = creatureData.maxHealth;
+        value = data.value;
         libido = 100; // Hardcoded default for now.
     }
 }

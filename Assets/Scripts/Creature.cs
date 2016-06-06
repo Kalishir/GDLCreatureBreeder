@@ -12,11 +12,13 @@ public class Creature : MonoBehaviour
         get { return creatureData.type; }
     }
     
-    public string CreatureName {
+    public string CreatureName
+    {
         get { return creatureData.name; }
     }
 
-    public int Value {
+    public int Value
+    {
         get { return creatureData.value; }
     }
 
@@ -45,5 +47,14 @@ public class Creature : MonoBehaviour
         gameObject.name = creatureData.name;
         health = creatureData.maxHealth;
         libido = 100; // Hardcoded default for now.
+    }
+
+    /// <summary>
+    /// Increase creature's health and libido.
+    /// </summary>
+    public void Tend(int health, int libido)
+    {
+        Health += health;
+        Libido += libido;
     }
 }

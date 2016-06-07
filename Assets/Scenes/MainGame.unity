@@ -326,7 +326,7 @@ MonoBehaviour:
         m_MethodName: set_CurrentlySelectedCanvas
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1172841181}
+          m_ObjectArgument: {fileID: 1355768619}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -947,7 +947,7 @@ MonoBehaviour:
         m_MethodName: set_CurrentlySelectedCanvas
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1172841181}
+          m_ObjectArgument: {fileID: 1355768619}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3903,7 +3903,7 @@ MonoBehaviour:
         m_MethodName: set_CurrentlySelectedCanvas
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1355768619}
+          m_ObjectArgument: {fileID: 1172841181}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

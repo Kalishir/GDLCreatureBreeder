@@ -32,7 +32,7 @@ public class CanvasManager : MonoBehaviour {
 
         foreach (var canvas in canvases)
         {
-            canvas.alpha = 0;
+            DisableCanvas(canvas);
         }
 
         if (currentlySelectedCanvas == null)
@@ -43,12 +43,26 @@ public class CanvasManager : MonoBehaviour {
         TransitionScreen();
     }
 
+    private void DisableCanvas(CanvasGroup canvas)
+    {
+        canvas.alpha = 0;
+        canvas.interactable = false;
+        canvas.blocksRaycasts = false;
+    }
+
+    private void EnableCanvas(CanvasGroup canvas)
+    {
+        canvas.alpha = 1;
+        canvas.interactable = true;
+        canvas.blocksRaycasts = true;
+    }
+
     public void TransitionScreen()
     {
         if (previouslySelectedCanvas != null)
         {
-            previouslySelectedCanvas.alpha = 0;
+            DisableCanvas(previouslySelectedCanvas);
         }
-        currentlySelectedCanvas.alpha = 1;
+        EnableCanvas(currentlySelectedCanvas);
     }
 }

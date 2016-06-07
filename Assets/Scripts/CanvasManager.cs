@@ -1,48 +1,52 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CanvasManager : MonoBehaviour {
 
-    [SerializeField] private GameObject generalCanvas;
-    [SerializeField] private GameObject storeCanvas;
-    [SerializeField] private GameObject managementCanvas;
+    [SerializeField] private List<CanvasGroup> canvases;
+    //[SerializeField] private GameObject storeCanvas;
+    //[SerializeField] private GameObject managementCanvas;
+
+    private CanvasGroup previouslySelectedCanvas;
+    private CanvasGroup currentlySelectedCanvas;
+
+    public CanvasGroup CurrentlySelectedCanvas
+    {
+        get
+        {
+            return currentlySelectedCanvas;
+        }
+        set
+        {
+            if (value == currentlySelectedCanvas)
+                return;
+
+            previouslySelectedCanvas = currentlySelectedCanvas;
+            currentlySelectedCanvas = value;
+            TransitionScreen();
+        }
+    }
     
     void Start()
     {
-        if (generalCanvas == null)
+        foreach (var canvas in canvases)
         {
-            generalCanvas = GameObject.Find("GeneralMenuCanvas") as GameObject;
+            canvas.alpha = 0;
         }
-        if (storeCanvas == null)
+        if (currentlySelectedCanvas == null)
         {
-            storeCanvas = GameObject.Find("StoreCanvas") as GameObject;
+            currentlySelectedCanvas = canvases[0];
         }
-        if (managementCanvas == null)
-        {
-            managementCanvas = GameObject.Find("ManagementCanvas") as GameObject;
-        }
-
-        ShowGeneralMenuScreen();
+        TransitionScreen();
     }
 
-    public void ShowGeneralMenuScreen()
+    public void TransitionScreen()
     {
-        generalCanvas.SetActive(true);
-        storeCanvas.SetActive(false);
-        managementCanvas.SetActive(false);
-    }
-
-    public void ShowStoreScreen()
-    {
-        generalCanvas.SetActive(false);
-        storeCanvas.SetActive(true);
-        managementCanvas.SetActive(false);
-    }
-
-    public void ShowManagementScreen()
-    {
-        generalCanvas.SetActive(false);
-        storeCanvas.SetActive(false);
-        managementCanvas.SetActive(true);
+        if (previouslySelectedCanvas != null)
+        {
+            previouslySelectedCanvas.alpha = 0;
+        }
+        currentlySelectedCanvas.alpha = 1;
     }
 }

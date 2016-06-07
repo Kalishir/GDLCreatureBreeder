@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class CanvasManager : MonoBehaviour {
 
     [SerializeField] private List<CanvasGroup> canvases;
-    //[SerializeField] private GameObject storeCanvas;
-    //[SerializeField] private GameObject managementCanvas;
 
     private CanvasGroup previouslySelectedCanvas;
     private CanvasGroup currentlySelectedCanvas;
@@ -30,14 +27,19 @@ public class CanvasManager : MonoBehaviour {
     
     void Start()
     {
+        if (canvases.Count == 0)
+            throw new System.Exception("Why are you trying to manage 0 canvases you dolt");
+
         foreach (var canvas in canvases)
         {
             canvas.alpha = 0;
         }
+
         if (currentlySelectedCanvas == null)
         {
             currentlySelectedCanvas = canvases[0];
         }
+
         TransitionScreen();
     }
 

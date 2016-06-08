@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using UnityEngine.UI;
+
 public class GeneralUIHelper : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
@@ -26,6 +28,31 @@ public class GeneralUIHelper : MonoBehaviour
         this.audioSource.Play();
     }
 
+    public void ScaleUp(Graphic graphic)
+    {
+        StartCoroutine(ScaleAnimation(graphic, 1.1f, 0.2f, 0f));
+    }
+
+    public void ScaleBack(Graphic graphic)
+    {
+        StartCoroutine(ScaleAnimation(graphic, 1f, 0.2f, 0f));
+    }
+
+    private IEnumerator ScaleAnimation(Graphic graphic, float endValue, float duration, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        float percent = 0;
+        float fadeSpeed = 1 / duration;
+
+        while (percent < 1)
+        {
+            percent += Time.deltaTime * fadeSpeed;
+
+            graphic.rectTransform.localScale = Vector3.Lerp(graphic.rectTransform.localScale, Vector3.one * endValue, percent);
+            yield return null;
+        }
+
+    }
 
 
 }

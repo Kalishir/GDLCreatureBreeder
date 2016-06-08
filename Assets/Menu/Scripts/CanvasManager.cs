@@ -102,7 +102,7 @@ public class CanvasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// The fade.
+    /// Fade Animation
     /// </summary>
     /// <param name="canvas">
     /// The canvas.
@@ -120,7 +120,7 @@ public class CanvasManager : MonoBehaviour
     /// Is this canvas going to be disabled or enabled?
     /// </param>
     /// <returns>
-    /// The <see cref="IEnumerator"/>.
+    /// It's a co-routine, so use the yield returns for whatever you want.
     /// </returns>
     private IEnumerator FadeCanvas(CanvasGroup canvas, float endValue, float duration, float waitTime, bool disable)
     {

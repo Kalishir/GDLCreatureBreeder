@@ -89,6 +89,13 @@ public class Creature
             }
         }
     }
+    
+    private string spritePath;
+    public string SpritePath
+    {
+        get { return spritePath; }
+        private set { spritePath = value }
+    }
 
     public Creature(CreatureData data)
     {
@@ -96,6 +103,8 @@ public class Creature
         ResetHealth();
         ResetHorniness();
         RecalculateValue();
+        spritePath = "/Resources/Sprites/Creatures/" + System.Enum.GetName(Type) + "/" + CreatureName;
+        iconPath = "/Resources/Icon/Creatures/" + System.Enum.GetName(Type) + "/" + CreatureName;
     }
 
     public void ResetHealth()

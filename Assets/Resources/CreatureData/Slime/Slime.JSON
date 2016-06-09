@@ -1,0 +1,8 @@
+{
+	"type" : 11,
+	"name" : "SomeSlime",
+	"maxHealth" : 35,
+	"maxHorniness" : 20,
+	"libido" : 10,
+	"baseValue" : 150
+}

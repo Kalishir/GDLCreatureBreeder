@@ -1,0 +1,8 @@
+{
+	"type" : 7,
+	"name" : "SomeGolem",
+	"maxHealth" : 90,
+	"baseValue" : 750,
+	"maxHorniness" : 60,
+	"libido" : 20
+}

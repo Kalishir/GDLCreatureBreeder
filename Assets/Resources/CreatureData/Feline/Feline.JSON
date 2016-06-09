@@ -1,0 +1,8 @@
+{
+	"type" : 6,
+	"name" : "SomeCat",
+	"maxHealth" : 55,
+	"baseValue" : 550,
+	"maxHorniness" : 60,
+	"libido" : 30
+}

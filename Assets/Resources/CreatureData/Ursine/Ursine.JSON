@@ -1,0 +1,8 @@
+{
+	"type" : 12,
+	"name" : "SomeUrsine",
+	"maxHealth" : 80,
+	"maxHorniness" : 75,
+	"libido" : 25,
+	"baseValue" : 600
+}

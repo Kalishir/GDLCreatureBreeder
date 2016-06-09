@@ -1,56 +1,119 @@
 ﻿using UnityEngine;
-using UnityEngine.Assertions;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 public class CreatureManager : MonoBehaviour
 {
-    [SerializeField] private GameObject creaturePrefab;
+    [SerializeField] private Dictionary<CreatureType, List<CreatureData>> creaturesDictionary;
 
-    // Values used for breeding.
-    private const int lowerCreatureHealth = 50;
-    private const int lowerCreatureLibido = 50;
-    private const int breedingValueDeviation = 30; // How much the randomized value of the bred creature can be different from its base value.
-
-    private void Start()
+    // Singleton Enforcement
+    static private CreatureManager manager;
+    static public CreatureManager Manager
     {
-        // TODO: Remove test.
-        Creature creature = SpawnCreature("Dragon");
-        Creature creature2 = SpawnCreature("Dragon");
-        Creature babyCreature = Breed(creature, creature2);
-        Assert.IsNotNull(babyCreature, "Breeding failed!");
-    }
-
-    /// <summary>
-    /// Spawns a creature into the scene.
-    /// </summary>
-    /// <param name="fileName">The json filename of the creature without extension.</param>
-    private Creature SpawnCreature(string fileName)
-    {
-        GameObject creatureGameObject = Instantiate(creaturePrefab);
-        var creatureData = JsonUtility.FromJson<CreatureData>(Resources.Load<TextAsset>(fileName).text);
-        var creature = creatureGameObject.GetComponent<Creature>();
-        creature.SetCreatureData(creatureData);
-
-        return creature;
-    }
-
-    /// <summary>
-    /// Breeds two creatures and creates a new one.
-    /// </summary>
-    /// <returns>The newly created creature. Returns null if creature types do not match.</returns>
-    public Creature Breed(Creature creature1, Creature creature2)
-    {
-        Creature retVal = null;
-        if (creature1.Type == creature2.Type)
+        get
         {
-            creature1.Health -= lowerCreatureHealth; // Creatures lose health and libido on breeding.
-            creature1.Libido -= lowerCreatureLibido;
-            creature2.Health -= lowerCreatureHealth;
-            creature2.Libido -= lowerCreatureLibido;
-
-            retVal = SpawnCreature(creature1.Type.ToString());
-            int baseValue = retVal.Value;
-            retVal.Value = Random.Range(baseValue - breedingValueDeviation, baseValue + breedingValueDeviation);
+            return manager;
         }
-        return retVal;
+        private set
+        {
+            manager = value;
+        }
+    }
+
+    public void Awake()
+    {
+        if (manager == null)
+        {
+            Manager = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (manager != this)
+        {
+            Destroy(this);
+        }
+    }
+
+
+    public void Start()
+    {
+        SetupDictionary();
+
+        //Load Creatures from JSON
+        LoadCreatureLibrary();
+    }
+
+    private void SetupDictionary()
+    {
+        creaturesDictionary = new Dictionary<CreatureType, List<CreatureData>>();
+        var creatureTypes = System.Enum.GetValues(typeof(CreatureType)) as CreatureType[];
+        foreach (var creatureType in creatureTypes)
+        {
+            creaturesDictionary.Add( creatureType, new List<CreatureData>() );
+        }
+    }
+
+    private void LoadCreatureLibrary()
+    {
+        if (creaturesDictionary == null)
+            return;
+
+        string path = "CreatureData/";
+        var info = new DirectoryInfo("Assets/Resources/" + path);
+        var folders = info.GetDirectories();
+        foreach (var folder in folders)
+        {
+            string subFolderPath = path + folder.Name;
+            var subFolderInfo = new DirectoryInfo("Assets/Resources/" + subFolderPath);
+            var files = subFolderInfo.GetFiles("*.JSON");
+            foreach (var file in files)
+            {
+                string fileName = "/" + file.Name.Split('.')[0];
+                CreatureData creature = JsonUtility.FromJson<CreatureData>(Resources.Load<TextAsset>(subFolderPath + fileName).text);
+                creaturesDictionary[creature.Type].Add(creature);
+            }
+
+        }
+    }
+
+    /// <summary>
+    /// Gets a random creature's data loaded from JSON.
+    /// </summary>
+    /// <returns>A CreatureData object of a random type</returns>
+    public CreatureData GetCreature()
+    {
+        //selects which type the resultant creature will be
+        var values = System.Enum.GetValues(typeof(CreatureType));
+        CreatureType creatureType = (CreatureType)values.GetValue(Random.Range(0, values.Length));
+        return GetCreatureOfType(creatureType);
+    }
+
+    /// <summary>
+    /// Gets a random Creature's data loaded from JSON on start matching the type supplied as a parameter.
+    /// </summary>
+    /// <param name="creatureType">The Type of the creature to find</param>
+    /// <returns>A CreatureData object with a type matching that requested</returns>
+    public CreatureData GetCreatureOfType(CreatureType creatureType)
+    {
+        //selects the specific creature from the type list
+        int creatureLocation = Random.Range(0, creaturesDictionary[creatureType].Count);
+        return creaturesDictionary[creatureType][creatureLocation];
+    }
+
+    /// <summary>
+    /// Gets a specific creature's data from the JSON loaded on start
+    /// </summary>
+    /// <param name="type">The type of the creature to find</param>
+    /// <param name="name">The name of the creature to find, not case sensitive</param>
+    /// <returns>The Specific Creature if it exists. Throws an Exception if the creature is not in the dictionary</returns>
+    public CreatureData GetSpecificCreature(CreatureType type, string name)
+    {
+        foreach (var creature in creaturesDictionary[type])
+        {
+            if (creature.Name.ToLower() == name.ToLower())
+                return creature;
+        }
+
+        throw new System.Exception("Creature Not In Dictionary");
     }
 }

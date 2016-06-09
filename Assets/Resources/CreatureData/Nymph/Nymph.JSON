@@ -1,0 +1,8 @@
+{
+	"type" : 10,
+	"name" : "SomeNymph",
+	"maxHealth" : 45,
+	"maxHorniness" : 90,
+	"libido" : 45,
+	"baseValue" : 650
+}

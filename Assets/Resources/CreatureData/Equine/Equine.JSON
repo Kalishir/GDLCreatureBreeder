@@ -1,0 +1,8 @@
+{
+	"type" : 5,
+	"name" : "SomeHorse",
+	"maxHealth" : 75,
+	"baseValue" : 600,
+	"maxHorniness" : 60,
+	"libido" : 20
+}

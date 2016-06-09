@@ -1,10 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
+
+using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class CreatureManager : MonoBehaviour, IDisposeable
+using Random = UnityEngine.Random;
+
+public class CreatureManager : MonoBehaviour, IDisposable
 {
+
+    /* 
+    ISSUE: Dictionaries are not serializable in the Unity Editor.
+    TODO: 
+        Either
+        1) Ham this with some basic code that grabs two lists for Keys and Values in the manager
+        2) Create a script that allows for full serialization of a Dictionary (which would be kind of the same, but a bit more work).
+        
+        Third party options:
+        There are a few open source versions available once the legal stuff is sorted such as Vexe's Framework (VXF)
+        There are also purchased assets available that do the same such as Advanced Inspector.
+    */
     [SerializeField] private Dictionary<CreatureType, List<CreatureData>> creaturesDictionary;
 
     // Singleton Enforcement
@@ -125,7 +141,7 @@ public class CreatureManager : MonoBehaviour, IDisposeable
         System.GC.SuppressFinalize(this);
     }
     
-    OnDestroy()
+    void OnDestroy()
     {
         Dispose(false);
     }
@@ -139,10 +155,10 @@ public class CreatureManager : MonoBehaviour, IDisposeable
         
         if(disposing)
         {
-            //Nothing managed needs to be disposed.
+            // Nothing managed needs to be disposed.
         }
         
-        foreach(var kvp in creaturesDictonary)
+        foreach(var kvp in creaturesDictionary)
         {
             kvp.Value.Clear();
         }

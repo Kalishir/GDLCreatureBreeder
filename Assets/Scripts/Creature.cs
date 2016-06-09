@@ -39,7 +39,7 @@ public class Creature
         set
         {
             health = value;
-            Mathf.Clamp(health, 0, creatureData.MaxHealth)
+            Mathf.Clamp(health, 0, creatureData.MaxHealth);
             RecalculateValue();
         }
     }
@@ -54,7 +54,7 @@ public class Creature
         set
         {
             horniness = value;
-            Mathf.Clamp(horniness, 0, creatureData.MaxHorniness)
+            Mathf.Clamp(horniness, 0, creatureData.MaxHorniness);
             RecalculateValue();
         }
     }
@@ -80,7 +80,7 @@ public class Creature
     public string SpritePath
     {
         get { return spritePath; }
-        private set { spritePath = value }
+        private set { spritePath = value; }
     }
     
     private string iconPath;
@@ -96,8 +96,10 @@ public class Creature
         ResetHealth();
         ResetHorniness();
         RecalculateValue();
-        spritePath = "/Resources/Sprites/Creatures/" + System.Enum.GetName(Type) + "/" + CreatureName;
-        iconPath = "/Resources/Icon/Creatures/" + System.Enum.GetName(Type) + "/" + CreatureName;
+
+        // TODO: Not sure if this is correct, but just wanted to fix up the errors. This used to just get the Type which didn't correspond to a method.
+        spritePath = "/Resources/Sprites/Creatures/" + System.Enum.GetName(Type.GetType(), creatureData) + "/" + CreatureName;
+        iconPath = "/Resources/Icon/Creatures/" + System.Enum.GetName(Type.GetType(), creatureData) + "/" + CreatureName;
     }
 
     public void ResetHealth()

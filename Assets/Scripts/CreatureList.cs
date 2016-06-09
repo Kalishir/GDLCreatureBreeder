@@ -1,11 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
-using System.Generics.Collections;
 
 public class CreatureList : MonoBehaviour
 {
     [SerializeField] private List<Creature> creatureList;
     // TODO: Refactor so that creatures cannot be added directly to the list;
-    public List<Creature> CreatureList
+    /// <summary>
+    /// Gets the creature list.
+    /// </summary>
+    public List<Creature> Creatures
     {
         get { return creatureList; }
         private set { creatureList = value; }
@@ -24,7 +27,7 @@ public class CreatureList : MonoBehaviour
 
     public void RemoveCreature(Creature creature)
     {
-        List.Remove(creature);
+        creatureList.Remove(creature);
     }
 
 }

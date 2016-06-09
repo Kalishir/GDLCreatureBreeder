@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-public class CreatureManager : MonoBehaviour
+public class CreatureManager : MonoBehaviour, IDisposeable
 {
     [SerializeField] private Dictionary<CreatureType, List<CreatureData>> creaturesDictionary;
 
@@ -20,6 +20,8 @@ public class CreatureManager : MonoBehaviour
             manager = value;
         }
     }
+    
+    private bool disposed;
 
     public void Awake()
     {
@@ -37,25 +39,25 @@ public class CreatureManager : MonoBehaviour
 
     public void Start()
     {
-        SetupDictionary();
+        SetupDictionary(creaturesDictionary);
 
         //Load Creatures from JSON
-        LoadCreatureLibrary();
+        LoadCreatureLibrary(creaturesDictionary);
     }
 
-    private void SetupDictionary()
+    private void SetupDictionary(Dictionary<CreatureType, List<CreatureData>> dictionary)
     {
-        creaturesDictionary = new Dictionary<CreatureType, List<CreatureData>>();
+        dictionary = new Dictionary<CreatureType, List<CreatureData>>();
         var creatureTypes = System.Enum.GetValues(typeof(CreatureType)) as CreatureType[];
         foreach (var creatureType in creatureTypes)
         {
-            creaturesDictionary.Add( creatureType, new List<CreatureData>() );
+            dictionary.Add( creatureType, new List<CreatureData>() );
         }
     }
 
-    private void LoadCreatureLibrary()
+    private void LoadCreatureLibrary(Dictionary<CreatureType, List<CreatureData>> dictionary)
     {
-        if (creaturesDictionary == null)
+        if (dictionary == null)
             return;
 
         string path = "CreatureData/";
@@ -70,7 +72,7 @@ public class CreatureManager : MonoBehaviour
             {
                 string fileName = "/" + file.Name.Split('.')[0];
                 CreatureData creature = JsonUtility.FromJson<CreatureData>(Resources.Load<TextAsset>(subFolderPath + fileName).text);
-                creaturesDictionary[creature.Type].Add(creature);
+                dictionary[creature.Type].Add(creature);
             }
 
         }
@@ -80,7 +82,7 @@ public class CreatureManager : MonoBehaviour
     /// Gets a random creature's data loaded from JSON.
     /// </summary>
     /// <returns>A CreatureData object of a random type</returns>
-    public CreatureData GetCreature()
+    public CreatureData GetRandomCreature()
     {
         //selects which type the resultant creature will be
         var values = System.Enum.GetValues(typeof(CreatureType));
@@ -115,5 +117,39 @@ public class CreatureManager : MonoBehaviour
         }
 
         throw new System.Exception("Creature Not In Dictionary");
+    }
+    
+    public void Dispose()
+    {
+        Dispose(true);
+        System.GC.SuppressFinalize(this);
+    }
+    
+    OnDestroy()
+    {
+        Dispose(false);
+    }
+    
+    protected virtual void Dispose(bool disposing)
+    {
+        if(disposed)
+        {
+            return;
+        }
+        
+        if(disposing)
+        {
+            //Nothing managed needs to be disposed.
+        }
+        
+        foreach(var kvp in creaturesDictonary)
+        {
+            kvp.Value.Clear();
+        }
+        creaturesDictionary.Clear();
+        creaturesDictionary = null;
+        Manager = null;
+        
+        disposed = true;
     }
 }

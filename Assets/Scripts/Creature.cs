@@ -39,14 +39,7 @@ public class Creature
         set
         {
             health = value;
-            if (health > creatureData.MaxHealth)
-            {
-                health = creatureData.MaxHealth;
-            }
-            if (health < 0)
-            {
-                health = 0;
-            }
+            Mathf.Clamp(health, 0, creatureData.MaxHealth)
             RecalculateValue();
         }
     }
@@ -61,14 +54,7 @@ public class Creature
         set
         {
             horniness = value;
-            if (horniness > creatureData.MaxHorniness)
-            {
-                horniness = creatureData.MaxHorniness;
-            }
-            if (horniness < 0)
-            {
-                horniness = 0;
-            }
+            Mathf.Clamp(horniness, 0, creatureData.MaxHorniness)
             RecalculateValue();
         }
     }
@@ -95,6 +81,13 @@ public class Creature
     {
         get { return spritePath; }
         private set { spritePath = value }
+    }
+    
+    private string iconPath;
+    public string IconPath
+    {
+        get { return iconPath; }
+        private set { iconPath = value; }
     }
 
     public Creature(CreatureData data)

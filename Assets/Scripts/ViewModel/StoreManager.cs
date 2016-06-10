@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class StoreManager : MonoBehaviour
 {
@@ -7,13 +8,15 @@ public class StoreManager : MonoBehaviour
     [SerializeField] private int creatureCount;
     [SerializeField] private GameObject StoreListFrame;
     [SerializeField] private CreatureList creatureList;
-    
-    
+    //[SerializeField] private GameObject selectedFrame;
+
+    private Dictionary<Creature, GameObject> UIPanelDictionary;
 
     // Use this for initialization
     void Start()
     {
         creatureList = new CreatureList();
+        UIPanelDictionary = new Dictionary<Creature, GameObject>();
         PopulateStore(creatureList);        
     }
 
@@ -31,14 +34,15 @@ public class StoreManager : MonoBehaviour
 
         foreach (var creature in creatureList.Creatures)
         {
-            GameObject newCreaturePanel = CreateCreatureObject(creature);
+            GameObject newCreaturePanel = GetCreaturePanel(creature);
             newCreaturePanel.transform.SetParent(StoreListFrame.transform, false);
         }
     }
 
-    private GameObject CreateCreatureObject(Creature creature)
+    private GameObject CreateCreaturePanel(Creature creature)
     {
-        if (creaturePrefab == null) return null;
+        if (creaturePrefab == null)
+            return null;
 
         GameObject newCreature = GameObject.Instantiate(creaturePrefab);
         newCreature.name = creature.CreatureName;
@@ -47,8 +51,20 @@ public class StoreManager : MonoBehaviour
         //TODO: Add creature Icon to prefab;
         //TODO: Add event handling to prefab;
 
+        UIPanelDictionary.Add(creature, newCreature);
         return newCreature;
     }
 
+    public GameObject GetCreaturePanel(Creature creature)
+    {
+        if (UIPanelDictionary.ContainsKey(creature))
+        {
+            return UIPanelDictionary[creature];
+        }
+        else
+        {
+            return CreateCreaturePanel(creature);
+        }
+    }
 
 }

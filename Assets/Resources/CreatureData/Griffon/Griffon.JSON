@@ -1,8 +1,8 @@
 {
-	"type" : 8,
+	"type" : 9,
 	"name" : "SomeGriffon",
 	"maxHealth" : 65,
-	"baseValue" : 650,
 	"maxHorniness" : 50,
-	"libido" : 25
+  "libido": 25,
+  "baseValue" : 650
 }

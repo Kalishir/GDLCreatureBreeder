@@ -1,13 +1,8 @@
-﻿using System;
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
 
-using Random = UnityEngine.Random;
-
-public class CreatureManager : MonoBehaviour, IDisposable
+public class CreatureManager : MonoBehaviour, System.IDisposable
 {
 
     /* 
@@ -21,7 +16,7 @@ public class CreatureManager : MonoBehaviour, IDisposable
         There are a few open source versions available once the legal stuff is sorted such as Vexe's Framework (VXF)
         There are also purchased assets available that do the same such as Advanced Inspector.
     */
-    [SerializeField] private Dictionary<CreatureType, List<CreatureData>> creaturesDictionary;
+    private Dictionary<CreatureType, List<CreatureData>> creaturesDictionary;
 
     // Singleton Enforcement
     static private CreatureManager manager;
@@ -69,6 +64,7 @@ public class CreatureManager : MonoBehaviour, IDisposable
         {
             dictionary.Add( creatureType, new List<CreatureData>() );
         }
+        creaturesDictionary = dictionary;
     }
 
     private void LoadCreatureLibrary(Dictionary<CreatureType, List<CreatureData>> dictionary)
@@ -92,6 +88,8 @@ public class CreatureManager : MonoBehaviour, IDisposable
             }
 
         }
+
+        creaturesDictionary = dictionary;
     }
 
     /// <summary>
@@ -102,7 +100,7 @@ public class CreatureManager : MonoBehaviour, IDisposable
     {
         //selects which type the resultant creature will be
         var values = System.Enum.GetValues(typeof(CreatureType));
-        CreatureType creatureType = (CreatureType)values.GetValue(Random.Range(0, values.Length));
+        CreatureType creatureType = (CreatureType)values.GetValue(Random.Range(1, values.Length));
         return GetCreatureOfType(creatureType);
     }
 
@@ -114,6 +112,7 @@ public class CreatureManager : MonoBehaviour, IDisposable
     public CreatureData GetCreatureOfType(CreatureType creatureType)
     {
         //selects the specific creature from the type list
+        
         int creatureLocation = Random.Range(0, creaturesDictionary[creatureType].Count);
         return creaturesDictionary[creatureType][creatureLocation];
     }

@@ -1,8 +1,8 @@
 {
-	"type" : 0,
+	"type" : 1,
 	"name" : "SomeSpider",
 	"maxHealth" : 25,
-	"baseValue" : 200,
 	"maxHorniness" : 40,
-	"libido" : 20
+  "libido": 20,
+  "baseValue" : 200
 }

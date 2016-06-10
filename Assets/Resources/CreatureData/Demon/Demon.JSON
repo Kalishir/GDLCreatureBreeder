@@ -1,8 +1,8 @@
 {
-	"type" : 3,
+	"type" : 4,
 	"name" : "SomeDemon",
 	"maxHealth" : 85,
-	"baseValue" : 800,
 	"maxHorniness" : 80,
-	"libido" : 10
+  "libido": 10,
+  "baseValue" : 800
 }

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
+[System.Serializable]
 public class Creature
 {
     // The data of the creature loaded in from JSON.
-    private CreatureData creatureData;
+    [SerializeField] private CreatureData creatureData;
 
     public CreatureType Type
     {
@@ -29,7 +30,23 @@ public class Creature
         }
     }
 
-    private int health;
+    public int MaxHealth
+    {
+        get
+        {
+            return creatureData.MaxHealth;
+        }
+    }
+
+    public int MaxHorniness
+    {
+        get
+        {
+            return creatureData.MaxHorniness;
+        }
+    }
+
+    [SerializeField] private int health;
     public int Health
     {
         get
@@ -44,7 +61,7 @@ public class Creature
         }
     }
 
-    private int horniness;
+    [SerializeField] private int horniness;
     public int Horniness
     {
         get
@@ -59,7 +76,7 @@ public class Creature
         }
     }
 
-    private int currentValue;
+    [SerializeField] private int currentValue;
     public int CurrentValue
     {
         get
@@ -75,31 +92,37 @@ public class Creature
             }
         }
     }
-    
-    private string spritePath;
+
+    [SerializeField] private string spritePath;
     public string SpritePath
     {
         get { return spritePath; }
         private set { spritePath = value; }
     }
-    
-    private string iconPath;
+
+    [SerializeField] private string iconPath;
     public string IconPath
     {
         get { return iconPath; }
         private set { iconPath = value; }
     }
 
+    /// <summary>
+    /// Creates a new Creature from the CreatureData Object.
+    /// Throws an exception if the CreatureData.Type is Invalid
+    /// </summary>
+    /// <param name="data">A CreatureData struct to generate the creature from</param>
     public Creature(CreatureData data)
     {
+        if (data.Type == CreatureType.Invalid)
+            throw new System.Exception("Invalid Creature Type Exception");
         creatureData = data;
         ResetHealth();
         ResetHorniness();
         RecalculateValue();
 
-        // TODO: Not sure if this is correct, but just wanted to fix up the errors. This used to just get the Type which didn't correspond to a method.
-        spritePath = "/Resources/Sprites/Creatures/" + System.Enum.GetName(Type.GetType(), creatureData) + "/" + CreatureName;
-        iconPath = "/Resources/Icon/Creatures/" + System.Enum.GetName(Type.GetType(), creatureData) + "/" + CreatureName;
+        spritePath = "/Resources/Sprites/Creatures/" + System.Enum.GetName(Type.GetType(), Type) + "/" + CreatureName;
+        iconPath = "/Resources/Icon/Creatures/" + System.Enum.GetName(Type.GetType(), Type) + "/" + CreatureName;
     }
 
     public void ResetHealth()

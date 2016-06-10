@@ -2,6 +2,7 @@
 
 public enum CreatureType
 {
+    Invalid = 0,
     Arachnid,
     Avian,
     Canine,

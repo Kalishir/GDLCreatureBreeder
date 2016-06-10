@@ -1,21 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(CreatureList))]
 public class StoreManager : MonoBehaviour
 {
     [SerializeField] private GameObject creaturePrefab;
     [SerializeField] private int creatureCount;
     [SerializeField] private GameObject StoreListFrame;
-
-    private CreatureList creatureList;
+    [SerializeField] private CreatureList creatureList;
     
     
 
     // Use this for initialization
     void Start()
     {
-        creatureList = GetComponent<CreatureList>();
+        creatureList = new CreatureList();
         PopulateStore(creatureList);        
     }
 

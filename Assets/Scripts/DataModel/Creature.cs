@@ -140,4 +140,12 @@ public class Creature
     {
         CurrentValue = Health * Horniness * creatureData.BaseValue;
     }
+
+    public override string ToString()
+    {
+        return creatureData.ToString() +
+                ", Current Health: " + health +
+                ", Current Horniness: " + horniness +
+                ", Current Value: " + currentValue;
+    }
 }

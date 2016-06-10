@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreatureList : MonoBehaviour
+
+[System.Serializable]
+public class CreatureList
 {
     [SerializeField] private List<Creature> creatures;
     // TODO: Refactor so that creatures cannot be added directly to the list;
@@ -16,7 +18,7 @@ public class CreatureList : MonoBehaviour
         private set { creatures = value; }
     }
 
-    void Start()
+    public CreatureList()
     {
         creatures = new List<Creature>();
     }

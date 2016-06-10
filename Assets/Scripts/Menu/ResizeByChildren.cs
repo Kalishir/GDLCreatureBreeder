@@ -27,7 +27,7 @@ public class ResizeByChildren : MonoBehaviour {
     public void UpdateSizing()
     {
         RectTransform newSize = transform as RectTransform;
-        int newHeight = (transform.childCount * heightOfChildObject) + (transform.childCount - 1) * layoutGroup.padding.vertical;
+        int newHeight = (transform.childCount * heightOfChildObject) + (transform.childCount + 1) * layoutGroup.padding.vertical;
         newSize.sizeDelta = new Vector2(newSize.sizeDelta.x, newHeight);
         lastChildCount = transform.childCount;
     }

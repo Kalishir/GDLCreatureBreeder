@@ -1,56 +1,32 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(CreatureList))]
-public class PlayerInventory : MonoBehaviour , System.IDisposable
+public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private GameObject creaturePrefab;
-
-    private CreatureList creatureList;
-
-    // Singleton Enforcement
-    static private PlayerInventory inventory;
-    static public PlayerInventory Inventory
-    {
-        get
-        {
-            return inventory;
-        }
-        private set
-        {
-            inventory = value;
-        }
-    }
-
-    private bool disposed;
-
-    public void Awake()
-    {
-        if (inventory == null)
-        {
-            Inventory = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (inventory != this)
-        {
-            Destroy(this);
-        }
-    }
+    [SerializeField] private GameObject inventoryList;
+    [SerializeField] private CreatureList creatureList;
 
 
     // Use this for initialization
     void Start()
     {
-        creatureList = GetComponent<CreatureList>();
+        creatureList = new CreatureList();
         PopulatePlayerInventory(creatureList);
     }
 
 
     private void PopulatePlayerInventory(CreatureList list)
     {
-        list.AddCreature(CreatureManager.Manager.GetRandomCreature());
         list.AddCreature(CreatureManager.Manager.GetCreatureOfType(CreatureType.Slime));
         list.AddCreature(CreatureManager.Manager.GetCreatureOfType(CreatureType.Slime));
+
+        foreach (var creature in creatureList.Creatures)
+        {
+            GameObject newCreaturePanel = CreateCreatureObject(creature);
+            newCreaturePanel.transform.SetParent(inventoryList.transform, false);
+
+        }
     }
 
     private GameObject CreateCreatureObject(Creature creature)
@@ -66,36 +42,6 @@ public class PlayerInventory : MonoBehaviour , System.IDisposable
         //TODO: Add event handling to prefab;
 
         return newCreature;
-    }
-
-
-    public void Dispose()
-    {
-        Dispose(true);
-        System.GC.SuppressFinalize(this);
-    }
-
-    void OnDestroy()
-    {
-        Dispose(false);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (disposed)
-        {
-            return;
-        }
-
-        if (disposing)
-        {
-            // Nothing managed needs to be disposed.
-        }
-
-        creatureList = null;
-        Inventory = null;
-
-        disposed = true;
     }
 
 }

@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class CreatureWindow : MonoBehaviour
 {
-    [SerializeField]
-    private Image creatureImage;
+    [SerializeField] private Image creatureImage;
 
     private Image currentSelectedImage;
     private Image previousSelectedImage;
@@ -21,7 +20,6 @@ public class CreatureWindow : MonoBehaviour
         set
         {
             if (value == currentSelectedImage) return;
-            Debug.Log("This worked");
             previousSelectedImage = currentSelectedImage;
             currentSelectedImage = value;
             creatureImage.sprite = currentSelectedImage.sprite;
@@ -32,7 +30,5 @@ public class CreatureWindow : MonoBehaviour
     {
         currentSelectedImage = creatureImage;
     }
-
-
 
 }

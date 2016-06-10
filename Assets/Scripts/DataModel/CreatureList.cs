@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CreatureList : MonoBehaviour
 {
-    [SerializeField] public List<Creature> creatures;
+    [SerializeField] private List<Creature> creatures;
     // TODO: Refactor so that creatures cannot be added directly to the list;
 
 

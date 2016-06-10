@@ -40,6 +40,10 @@ public class CreatureManager : MonoBehaviour, System.IDisposable
         {
             Manager = this;
             DontDestroyOnLoad(gameObject);
+
+            SetupDictionary(creaturesDictionary);
+            //Load Creatures from JSON
+            LoadCreatureLibrary(creaturesDictionary);
         }
         else if (manager != this)
         {
@@ -50,10 +54,6 @@ public class CreatureManager : MonoBehaviour, System.IDisposable
 
     public void Start()
     {
-        SetupDictionary(creaturesDictionary);
-
-        //Load Creatures from JSON
-        LoadCreatureLibrary(creaturesDictionary);
     }
 
     private void SetupDictionary(Dictionary<CreatureType, List<CreatureData>> dictionary)

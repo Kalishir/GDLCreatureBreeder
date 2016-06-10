@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEditor;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -45,7 +43,7 @@ public class PointerUIHelper : MonoBehaviour, IPointerEnterHandler, IPointerExit
             onPointerUp.Invoke();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         var selectable = GetComponent<Selectable>();
         if ((selectable != null && selectable.IsInteractable()) || selectable == null)

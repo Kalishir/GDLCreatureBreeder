@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour {
     private List<Image> images = new List<Image>(10);
     private Color originalColor;
     public Color selectedItemColor = Color.blue;
+    public Image creatureDisplay;
 
     public void ItemSelected(Image theImage)
     {
@@ -27,6 +28,11 @@ public class UIManager : MonoBehaviour {
         }
 
         SetTheColor(theImage);
+    }
+
+    public void ShowCreatureOnDisplay(Sprite creatureSprite)
+    {
+        creatureDisplay.sprite = creatureSprite;
     }
 
     private void SetTheColor(Image theImage)

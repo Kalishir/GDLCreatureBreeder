@@ -8,11 +8,12 @@ public class PointerUIHelper : MonoBehaviour, IPointerEnterHandler, IPointerExit
     IPointerUpHandler, IPointerClickHandler
 {
 
-    [SerializeField] private UnityEvent onPointerEnter = new UnityEvent();
-    [SerializeField] private UnityEvent onPointerExit = new UnityEvent();
-    [SerializeField] private UnityEvent onPointerDown = new UnityEvent();
-    [SerializeField] private UnityEvent onPointerUp = new UnityEvent();
-    [SerializeField] private UnityEvent onPointerClick = new UnityEvent();
+    //These need to be public so we can add listeners to them.
+    [SerializeField] public UnityEvent onPointerEnter = new UnityEvent();
+    [SerializeField] public UnityEvent onPointerExit = new UnityEvent();
+    [SerializeField] public UnityEvent onPointerDown = new UnityEvent();
+    [SerializeField] public UnityEvent onPointerUp = new UnityEvent();
+    [SerializeField] public UnityEvent onPointerClick = new UnityEvent();
 
 
     public void OnPointerEnter(PointerEventData eventData)

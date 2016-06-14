@@ -220,9 +220,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 55942638}
+  - 114: {fileID: 55942639}
   m_Layer: 5
   m_Name: Content
-  m_TagString: Untagged
+  m_TagString: UIManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,6 +249,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -100, y: -100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &55942639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 55942637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f749510d2d9024ab008d6b352e4544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedItemColor: {r: 0, g: 0, b: 1, a: 1}
+  uiMask: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &96276444
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +400,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 646059209}
-  - 114: {fileID: 101738891}
   m_Layer: 5
   m_Name: ManagementContent
   m_TagString: Untagged
@@ -394,19 +407,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &101738891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 101738890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f749510d2d9024ab008d6b352e4544, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedItemColor: {r: 0, g: 0, b: 1, a: 1}
-  creatureDisplay: {fileID: 0}
 --- !u!1 &129110092
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +454,7 @@ GameObject:
   - 114: {fileID: 164889530}
   m_Layer: 5
   m_Name: Image
-  m_TagString: Untagged
+  m_TagString: CreatureWindow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -897,6 +897,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1172841181}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 55942639}
+        m_MethodName: ClearSelection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2874,10 +2885,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 1010186891}
-  - 114: {fileID: 1010186892}
   m_Layer: 5
   m_Name: StoreContent
-  m_TagString: UIManager
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2903,19 +2913,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -400, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1010186892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1010186890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f749510d2d9024ab008d6b352e4544, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedItemColor: {r: 0, g: 0, b: 1, a: 1}
-  creatureDisplay: {fileID: 1593263815}
 --- !u!1 &1122126678
 GameObject:
   m_ObjectHideFlags: 0
@@ -4375,7 +4372,7 @@ GameObject:
   - 114: {fileID: 1593263815}
   m_Layer: 5
   m_Name: Image
-  m_TagString: Untagged
+  m_TagString: CreatureWindow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5198,6 +5195,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1355768619}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 55942639}
+        m_MethodName: ClearSelection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

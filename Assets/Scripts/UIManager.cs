@@ -8,7 +8,18 @@ public class UIManager : MonoBehaviour {
     private List<Image> images = new List<Image>(10);
     private Color originalColor;
     public Color selectedItemColor = Color.blue;
-    public Image creatureDisplay;
+    private Image[] creatureDisplays;
+    public Sprite uiMask;
+
+    void Start()
+    {
+        var displayObjects = GameObject.FindGameObjectsWithTag("CreatureWindow");
+        creatureDisplays = new Image[displayObjects.Length];
+        for (int i = 0; i < displayObjects.Length; i++)
+        {
+            creatureDisplays[i] = displayObjects[i].GetComponent<Image>();
+        }
+    }
 
     public void ItemSelected(Image theImage)
     {
@@ -32,8 +43,21 @@ public class UIManager : MonoBehaviour {
 
     public void ShowCreatureOnDisplay(Sprite creatureSprite)
     {
-        creatureDisplay.sprite = creatureSprite;
+        for (int i = 0; i < creatureDisplays.Length; i++)
+        {
+            if (creatureSprite == null)
+                creatureDisplays[i].sprite = null;
+            creatureDisplays[i].sprite = creatureSprite;
+        }
+        
     }
+
+    public void ClearSelection()
+    {
+        ShowCreatureOnDisplay(uiMask);
+        SetTheColor(null);
+    }
+
 
     private void SetTheColor(Image theImage)
     {

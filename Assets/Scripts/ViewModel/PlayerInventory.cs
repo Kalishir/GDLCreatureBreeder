@@ -45,15 +45,30 @@ public class PlayerInventory : MonoBehaviour
     }
 
     //TODO get the creature from the creatureList
-    public void GetCreatureByUniqueID(int id)
+    public Creature GetCreatureByUniqueID(string id)
     {
-        
+        var theCreature = GetCreature(id);
+        return theCreature;
     }
 
     //TODO Delete the creature from the creatureList
-    public void DeleteCreatureByUniqueID(int id)
+    public void DeleteCreatureByUniqueID(string id)
     {
-        
+        var theCreature = GetCreature(id);
+        if(theCreature != null)
+            creatureList.RemoveCreature(theCreature);
     }
 
+    private Creature GetCreature(string id)
+    {
+        //Go Through the creature list and if it finds a match. return it
+        for (int i = 0; i < creatureList.Creatures.Count; i++)
+        {
+            if (creatureList.Creatures[i].ID == id)
+            {
+                return creatureList.Creatures[i];
+            }
+        }
+        return null;
+    }
 }

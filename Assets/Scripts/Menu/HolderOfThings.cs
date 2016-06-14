@@ -10,5 +10,6 @@ public class HolderOfThings : MonoBehaviour
 
     public Image creatureBackground;
     public Image creatureImage;
+    public string uniqueID;
 
 }

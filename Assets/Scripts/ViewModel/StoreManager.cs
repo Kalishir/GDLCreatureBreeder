@@ -49,6 +49,7 @@ public class StoreManager : MonoBehaviour
         newCreature.name = creature.CreatureName;
         newCreature.transform.Find("CreatureInfo/Name").gameObject.GetComponent<Text>().text = creature.CreatureName;
         newCreature.transform.Find("CreatureInfo/Price/Price").gameObject.GetComponent<Text>().text = creature.CurrentValue.ToString();
+        newCreature.GetComponent<HolderOfThings>().uniqueID = creature.ID;
         //TODO: Add creature Icon to prefab;
         //TODO: Add event handling to prefab;
 
@@ -68,14 +69,32 @@ public class StoreManager : MonoBehaviour
         }
     }
 
-    public void DeleteCreatureByID(int id)
+    //TODO get the creature from the creatureList
+    public Creature GetCreatureByUniqueID(string id)
     {
-        
+        var theCreature = GetCreature(id);
+        return theCreature;
     }
 
-    public void GetCreatureByID(int id)
+    //TODO Delete the creature from the creatureList
+    public void DeleteCreatureByUniqueID(string id)
     {
-        
+        var theCreature = GetCreature(id);
+        if (theCreature != null)
+            creatureList.RemoveCreature(theCreature);
+    }
+
+    private Creature GetCreature(string id)
+    {
+        //Go Through the creature list and if it finds a match. return it
+        for (int i = 0; i < creatureList.Creatures.Count; i++)
+        {
+            if (creatureList.Creatures[i].ID == id)
+            {
+                return creatureList.Creatures[i];
+            }
+        }
+        return null;
     }
 
 }

@@ -132,7 +132,7 @@ public class Creature
         spritePath = "/Resources/Sprites/Creatures/" + System.Enum.GetName(Type.GetType(), Type) + "/" + CreatureName;
         iconPath = "/Resources/Icon/Creatures/" + System.Enum.GetName(Type.GetType(), Type) + "/" + CreatureName;
 
-        guid = new Guid();
+        guid = Guid.NewGuid();
     }
 
     public void ResetHealth()

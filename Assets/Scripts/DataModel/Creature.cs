@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 [System.Serializable]
 public class Creature
@@ -107,6 +109,12 @@ public class Creature
         private set { iconPath = value; }
     }
 
+    private Guid guid;
+    public string ID
+    {
+        get { return guid.ToString(); }
+    }
+
     /// <summary>
     /// Creates a new Creature from the CreatureData Object.
     /// Throws an exception if the CreatureData.Type is Invalid
@@ -123,6 +131,8 @@ public class Creature
 
         spritePath = "/Resources/Sprites/Creatures/" + System.Enum.GetName(Type.GetType(), Type) + "/" + CreatureName;
         iconPath = "/Resources/Icon/Creatures/" + System.Enum.GetName(Type.GetType(), Type) + "/" + CreatureName;
+
+        guid = new Guid();
     }
 
     public void ResetHealth()

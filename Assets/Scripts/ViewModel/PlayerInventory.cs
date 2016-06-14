@@ -44,4 +44,16 @@ public class PlayerInventory : MonoBehaviour
         return newCreature;
     }
 
+    //TODO get the creature from the creatureList
+    public void GetCreatureByUniqueID(int id)
+    {
+        
+    }
+
+    //TODO Delete the creature from the creatureList
+    public void DeleteCreatureByUniqueID(int id)
+    {
+        
+    }
+
 }

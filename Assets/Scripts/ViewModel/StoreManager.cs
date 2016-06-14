@@ -30,6 +30,7 @@ public class StoreManager : MonoBehaviour
             {
                 list.AddCreature(CreatureManager.Manager.GetRandomCreature());
             }
+            
         }
 
         foreach (var creature in creatureList.Creatures)
@@ -65,6 +66,16 @@ public class StoreManager : MonoBehaviour
         {
             return CreateCreaturePanel(creature);
         }
+    }
+
+    public void DeleteCreatureByID(int id)
+    {
+        
+    }
+
+    public void GetCreatureByID(int id)
+    {
+        
     }
 
 }

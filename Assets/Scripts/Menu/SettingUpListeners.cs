@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class SettingUpListeners : MonoBehaviour
 {
-
+    [SerializeField]
     public HolderOfThings holder;
 
     private PointerUIHelper uiHelper;
@@ -21,8 +21,8 @@ public class SettingUpListeners : MonoBehaviour
 
 
         //Sets up the button to make the button selected when clicked
-	    uiHelper.onPointerClick.AddListener(() => theManager.ItemSelected(holder.creatureBackground));
+	    uiHelper.onPointerClick.AddListener(() => theManager.ItemSelected(holder.CreatureBackground));
         //sets up the button to show the creature on the big display when clicked
-        uiHelper.onPointerClick.AddListener(() => theManager.ShowCreatureOnDisplay(holder.creatureImage.sprite));
+        uiHelper.onPointerClick.AddListener(() => theManager.ShowCreatureOnDisplay(holder.CreatureImage.sprite));
     }
 }

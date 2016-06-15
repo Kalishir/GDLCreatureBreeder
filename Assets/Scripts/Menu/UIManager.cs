@@ -9,10 +9,15 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
 
     private List<Image> images = new List<Image>(10);
+
     private Color originalColor;
-    public Color selectedItemColor = Color.blue;
+    [SerializeField]
+    private Color selectedItemColor = Color.blue;
+
+    [SerializeField]
+    private Sprite uiMask;
+
     private Image[] creatureDisplays;
-    public Sprite uiMask;
 
     void Start()
     {

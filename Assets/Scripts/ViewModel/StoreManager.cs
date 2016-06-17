@@ -12,12 +12,15 @@ public class StoreManager : MonoBehaviour
 
     private Dictionary<Creature, GameObject> UIPanelDictionary;
 
+    private UIManager uiManager;
+
     // Use this for initialization
     void Start()
     {
         creatureList = new CreatureList();
         UIPanelDictionary = new Dictionary<Creature, GameObject>();
-        PopulateStore(creatureList);        
+        PopulateStore(creatureList);
+        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
     }
 
 
@@ -69,14 +72,12 @@ public class StoreManager : MonoBehaviour
         }
     }
 
-    //TODO get the creature from the creatureList
     public Creature GetCreatureByUniqueID(string id)
     {
         var theCreature = GetCreature(id);
         return theCreature;
     }
 
-    //TODO Delete the creature from the creatureList
     public void DeleteCreatureByUniqueID(string id)
     {
         var theCreature = GetCreature(id);
@@ -97,4 +98,24 @@ public class StoreManager : MonoBehaviour
         return null;
     }
 
+    public void BuySelectedCreature()
+    {
+        if (uiManager.CurrentSelectedItem != null)
+        {
+            var theCreature = GetCreatureByUniqueID(uiManager.CurrentSelectedItem.UniqueID);
+
+            //Checks if we can afford this creature. takes away the money if we can.
+            if (PlayerMoney.Instance.CheckIfWeCanPayForThisCreatureIfSoBuyIt(theCreature.CurrentValue))
+            {
+                Debug.Log("Bought a creature");
+
+                PlayerInventory.Instance.AddCreatureToInventory(theCreature);
+
+                creatureList.RemoveCreature(theCreature);
+                uiManager.ClearSelection();
+                //Destroys the gameobjects inside the store content
+                Destroy(uiManager.CurrentSelectedItem.gameObject);
+            }
+        }
+    }
 }

@@ -7,10 +7,21 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private GameObject inventoryList;
     [SerializeField] private CreatureList creatureList;
 
+    private static PlayerInventory instance;
+    static public PlayerInventory Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
+
 
     // Use this for initialization
     void Start()
     {
+        instance = this;
         creatureList = new CreatureList();
         PopulatePlayerInventory(creatureList);
     }
@@ -44,14 +55,20 @@ public class PlayerInventory : MonoBehaviour
         return newCreature;
     }
 
-    //TODO get the creature from the creatureList
+    //Called by store when we purchase a creature
+    public void AddCreatureToInventory(Creature creature)
+    {
+        Debug.Log("MEOW");
+        GameObject newCreaturePanel = CreateCreatureObject(creature);
+        newCreaturePanel.transform.SetParent(inventoryList.transform, false);
+    }
+
     public Creature GetCreatureByUniqueID(string id)
     {
         var theCreature = GetCreature(id);
         return theCreature;
     }
 
-    //TODO Delete the creature from the creatureList
     public void DeleteCreatureByUniqueID(string id)
     {
         var theCreature = GetCreature(id);

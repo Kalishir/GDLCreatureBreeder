@@ -11,13 +11,20 @@ public class UIManager : MonoBehaviour {
     private List<Image> images = new List<Image>(10);
 
     private Color originalColor;
-    [SerializeField]
-    private Color selectedItemColor = Color.blue;
+    
+    [SerializeField] private Color selectedItemColor = Color.blue;
 
-    [SerializeField]
-    private Sprite uiMask;
+    [SerializeField]private Sprite uiMask;
 
     private Image[] creatureDisplays;
+
+    private HolderOfThings currentSelectedItem;
+
+    public HolderOfThings CurrentSelectedItem 
+    {
+        get { return currentSelectedItem; }
+    }
+
 
     void Start()
     {
@@ -45,6 +52,11 @@ public class UIManager : MonoBehaviour {
             images.Add(theImage);
             originalColor = theImage.color;
         }
+        if (theImage != null)
+        {
+            currentSelectedItem = theImage.transform.parent.parent.GetComponent<HolderOfThings>();
+        }
+            
 
         SetTheColor(theImage);
     }
@@ -71,12 +83,20 @@ public class UIManager : MonoBehaviour {
     {
         for (int i = 0; i < images.Count; i++)
         {
-            if (images[i] == theImage)
-                theImage.color = selectedItemColor;
-            else
+            if (images[i] == null)
             {
-                images[i].color = originalColor;
+                images.RemoveAt(i);
             }
+            if (i <images.Count)
+            {
+                if (images[i] == theImage)
+                    theImage.color = selectedItemColor;
+                else
+                {
+                    images[i].color = originalColor;
+                }
+            }
+            
         }
     }
 }

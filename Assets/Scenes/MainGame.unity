@@ -1217,7 +1217,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 388547964}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 368300738}
+        m_MethodName: BuySelectedCreature
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &388547964
@@ -1475,6 +1486,7 @@ GameObject:
   - 224: {fileID: 484503630}
   - 114: {fileID: 484503629}
   - 114: {fileID: 484503631}
+  - 114: {fileID: 484503632}
   m_Layer: 5
   m_Name: SingletonHolder
   m_TagString: Untagged
@@ -1526,6 +1538,18 @@ MonoBehaviour:
   inventoryList: {fileID: 502986403}
   creatureList:
     creatures: []
+--- !u!114 &484503632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 484503628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40068d40100732449c648adb7467aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingMoney: 2000000000
 --- !u!1 &485599588
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class SettingUpListeners : MonoBehaviour
 {
-    [SerializeField]
-    public HolderOfThings holder;
+    
+    [SerializeField] public HolderOfThings holder;
 
     private PointerUIHelper uiHelper;
 

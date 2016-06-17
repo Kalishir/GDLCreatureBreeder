@@ -58,7 +58,7 @@ public class Creature
         set
         {
             health = value;
-            Mathf.Clamp(health, 0, creatureData.MaxHealth);
+            health = Mathf.Clamp(health, 0, creatureData.MaxHealth);
             RecalculateValue();
         }
     }
@@ -73,7 +73,7 @@ public class Creature
         set
         {
             horniness = value;
-            Mathf.Clamp(horniness, 0, creatureData.MaxHorniness);
+            horniness = Mathf.Clamp(horniness, 0, creatureData.MaxHorniness);
             RecalculateValue();
         }
     }

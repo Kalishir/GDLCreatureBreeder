@@ -49,6 +49,7 @@ public class PlayerInventory : MonoBehaviour
         newCreature.name = creature.CreatureName;
         newCreature.transform.Find("CreatureInfo/Name").gameObject.GetComponent<Text>().text = creature.CreatureName;
         newCreature.transform.Find("CreatureInfo/Price/Price").gameObject.GetComponent<Text>().text = creature.CurrentValue.ToString();
+        newCreature.GetComponent<HolderOfThings>().UniqueID = creature.ID;
         //TODO: Add creature Icon to prefab;
         //TODO: Add event handling to prefab;
 
@@ -58,7 +59,6 @@ public class PlayerInventory : MonoBehaviour
     //Called by store when we purchase a creature
     public void AddCreatureToInventory(Creature creature)
     {
-        Debug.Log("MEOW");
         GameObject newCreaturePanel = CreateCreatureObject(creature);
         newCreaturePanel.transform.SetParent(inventoryList.transform, false);
     }

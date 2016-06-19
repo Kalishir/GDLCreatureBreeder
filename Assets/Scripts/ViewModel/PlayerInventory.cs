@@ -63,6 +63,12 @@ public class PlayerInventory : MonoBehaviour
         newCreaturePanel.transform.SetParent(inventoryList.transform, false);
     }
 
+    public void CreateCreatureToInventory(CreatureData creature)
+    {
+        creatureList.AddCreature(creature);
+        AddCreatureToInventory(creatureList.Creatures[creatureList.Creatures.Count-1]);
+    }
+
     public Creature GetCreatureByUniqueID(string id)
     {
         var theCreature = GetCreature(id);

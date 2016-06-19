@@ -24,5 +24,8 @@ public class SettingUpListeners : MonoBehaviour
 	    uiHelper.onPointerClick.AddListener(() => theManager.ItemSelected(holder.CreatureBackground));
         //sets up the button to show the creature on the big display when clicked
         uiHelper.onPointerClick.AddListener(() => theManager.ShowCreatureOnDisplay(holder.CreatureImage.sprite));
-    }
+
+	    var cake = GetComponent<DoubleClick>();
+	    uiHelper.onPointerClick.AddListener(() => cake.Clicked());
+	}
 }

@@ -6,7 +6,14 @@ using UnityEngine.UI;
 /// <summary>
 /// Manages the highlighted creature and displays them.
 /// </summary>
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour
+{
+
+    [SerializeField]private GameObject breedingWindow;
+
+    [SerializeField]private GameObject breedingContent;
+
+    [SerializeField]private GameObject managmentContent;
 
     private List<Image> images = new List<Image>(10);
 
@@ -23,6 +30,35 @@ public class UIManager : MonoBehaviour {
     public HolderOfThings CurrentSelectedItem 
     {
         get { return currentSelectedItem; }
+    }
+
+    private bool breedingWindowIsOpen = false;
+    public bool BreedingWindowIsOpen
+    {
+        get { return breedingWindowIsOpen; }
+    }
+
+    public void ShowBreedingWindow()
+    {
+        ShowBreedingWindow(!breedingWindowIsOpen);
+    }
+
+    public void ShowBreedingWindow(bool state)
+    {
+        breedingWindowIsOpen = state;
+        breedingWindow.SetActive(breedingWindowIsOpen);
+    }
+
+    private static UIManager instance;
+    public static UIManager Instance
+    {
+        get { return instance; }
+    }
+
+    void Awake()
+    {
+        instance = this;
+        breedingWindow.SetActive(breedingWindowIsOpen);
     }
 
 
@@ -76,6 +112,7 @@ public class UIManager : MonoBehaviour {
     {
         ShowCreatureOnDisplay(uiMask);
         SetTheColor(null);
+        ShowBreedingWindow(false);
     }
 
 
@@ -97,6 +134,28 @@ public class UIManager : MonoBehaviour {
                 }
             }
             
+        }
+    }
+
+
+    public void CanIMoveCreatureToBreeding(GameObject theCreature)
+    {
+        //Get creature and the breeding script
+        var creature = PlayerInventory.Instance.GetCreatureByUniqueID(theCreature.GetComponent<HolderOfThings>().UniqueID);
+        var breeding = breedingContent.GetComponent<Breeding>();
+
+        //stores a backend reference in breeding
+        var shouldIMoveCreature = breeding.AddCreatureToBreedingHold(creature);
+        if (shouldIMoveCreature)
+            theCreature.transform.SetParent(breedingContent.transform);
+    }
+
+    public void MoveBreedingContentToManagment()
+    {
+        //Get all children in breedingcontent Gameobject and move them to managment
+        foreach (var child in breedingContent.transform.GetComponentsInChildren<HolderOfThings>())
+        {
+            child.transform.SetParent(managmentContent.transform);
         }
     }
 }

@@ -145,6 +145,7 @@ GameObject:
   - 114: {fileID: 11422688}
   - 114: {fileID: 11483952}
   - 114: {fileID: 11439614}
+  - 114: {fileID: 11495676}
   m_Layer: 5
   m_Name: Creature 1
   m_TagString: Untagged
@@ -501,6 +502,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 11439614}
+--- !u!114 &11495676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782285445c7fdaf41ba0d218dfee7809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &22204320
 CanvasRenderer:
   m_ObjectHideFlags: 1

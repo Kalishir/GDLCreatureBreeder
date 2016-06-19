@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Breeding : MonoBehaviour
 {
+    private Creature firstCreature;
+    private Creature secondCreature;
     /// <summary>
     /// Breeds Two Creatures of Matching Types
     /// </summary>
@@ -37,5 +39,41 @@ public class Breeding : MonoBehaviour
             isReady = false;
         }
         return isReady;
+    }
+
+    //Stores first and 2nd creature of breeding
+    public bool AddCreatureToBreedingHold(Creature creature)
+    {
+        if (firstCreature == null && ReadyToBreed(creature))
+        {
+            firstCreature = creature;
+            return true;
+        }
+        else if(firstCreature != null && ReadyToBreed(creature) && creature.Type == firstCreature.Type)
+        {
+            secondCreature = creature;
+            return true;
+        }
+        return false;
+    }
+
+    public void StartBreeding()
+    {
+        if (firstCreature != null && secondCreature != null)
+        {
+            //Create and add creature to inventory
+            var creature = BreedCreature(firstCreature, secondCreature);
+            PlayerInventory.Instance.CreateCreatureToInventory(creature);
+
+            //Move the creatures visually back into inventory
+            //Set creatures to null
+            firstCreature = null;
+            secondCreature = null;
+
+            //Move FrontEnd stuff to managmentscreen 
+            UIManager.Instance.MoveBreedingContentToManagment();
+            UIManager.Instance.ClearSelection();
+
+        }
     }
 }

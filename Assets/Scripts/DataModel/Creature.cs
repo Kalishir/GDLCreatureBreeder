@@ -148,7 +148,7 @@ public class Creature
 
     private void RecalculateValue()
     {
-        CurrentValue = Health * Horniness * creatureData.BaseValue;
+        CurrentValue = (int)(( Health / (float)MaxHealth ) * ( Horniness / (float)MaxHorniness) * creatureData.BaseValue);
     }
 
     public override string ToString()

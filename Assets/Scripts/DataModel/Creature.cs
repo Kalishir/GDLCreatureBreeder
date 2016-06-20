@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,6 +7,8 @@ public class Creature
 {
     // The data of the creature loaded in from JSON.
     [SerializeField] private CreatureData creatureData;
+    
+    public event System.EventHandler ValueChanged;
 
     public CreatureType Type
     {
@@ -149,6 +151,8 @@ public class Creature
     private void RecalculateValue()
     {
         CurrentValue = (int)(( Health / (float)MaxHealth ) * ( Horniness / (float)MaxHorniness) * creatureData.BaseValue);
+        if(ValueChanged != null)
+            ValueChanged(this, system.EventArgs.Empty);
     }
 
     public override string ToString()

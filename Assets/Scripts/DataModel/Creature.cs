@@ -152,7 +152,7 @@ public class Creature
     {
         CurrentValue = (int)(( Health / (float)MaxHealth ) * ( Horniness / (float)MaxHorniness) * creatureData.BaseValue);
         if(ValueChanged != null)
-            ValueChanged(this, system.EventArgs.Empty);
+            ValueChanged(this, EventArgs.Empty);
     }
 
     public override string ToString()

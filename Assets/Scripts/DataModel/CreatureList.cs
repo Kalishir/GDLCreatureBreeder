@@ -29,6 +29,11 @@ public class CreatureList
         creatures.Add(newCreature);
     }
 
+    public void AddCreature(Creature creature)
+    {
+        creatures.Add(creature);
+    }
+
     public void RemoveCreature(Creature creature)
     {
         creatures.Remove(creature);

@@ -59,14 +59,17 @@ public class PlayerInventory : MonoBehaviour
     //Called by store when we purchase a creature
     public void AddCreatureToInventory(Creature creature)
     {
+        creatureList.AddCreature(creature);
         GameObject newCreaturePanel = CreateCreatureObject(creature);
         newCreaturePanel.transform.SetParent(inventoryList.transform, false);
     }
 
-    public void CreateCreatureToInventory(CreatureData creature)
+    public void AddCreatureToInventory(CreatureData creature)
     {
         creatureList.AddCreature(creature);
-        AddCreatureToInventory(creatureList.Creatures[creatureList.Creatures.Count-1]);
+        Creature newCreature = creatureList.Creatures[creatureList.Creatures.Count - 1];
+        GameObject newCreaturePanel = CreateCreatureObject(newCreature);
+        newCreaturePanel.transform.SetParent(inventoryList.transform, false);
     }
 
     public Creature GetCreatureByUniqueID(string id)

@@ -8,8 +8,8 @@ public class Breeding : MonoBehaviour
     /// <summary>
     /// Breeds Two Creatures of Matching Types
     /// </summary>
-    /// <param name="creature1">A CreatureObject representing the first parent</param>
-    /// <param name="creature2">A CreatureObject representing the second parent</param>
+    /// <param name="creature1">A Creature object representing the first parent</param>
+    /// <param name="creature2">A Creature object representing the second parent</param>
     /// <returns>
     /// A CreatureData object. 
     /// Empty and Type == CreatureType.Invalid if breeding failed.
@@ -27,6 +27,13 @@ public class Breeding : MonoBehaviour
         return newCreature;
     }
 
+    /// <summary>
+    /// Determines if a Creature is ready to breed.
+    /// <param name ="creature">A Creature object to be tested.</param>
+    /// <returns>
+    /// True if Health and Horniness are maxed.
+    /// False if not.
+    /// </returns>
     public bool ReadyToBreed(Creature creature)
     {
         bool isReady = true;

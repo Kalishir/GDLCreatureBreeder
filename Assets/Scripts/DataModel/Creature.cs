@@ -137,11 +137,17 @@ public class Creature
         guid = Guid.NewGuid();
     }
 
+    /// <summary>
+    /// Resets the creatures health to a random number between 1 and (MaxHealth/2) + 1
+    /// </summary>
     public void ResetHealth()
     {
         Health = Random.Range(1, (creatureData.MaxHealth / 2) + 1);
     }
 
+    /// <summary>
+    /// Resets the creatures horniness to a random number between 1 and (MaxHorniness/2) + 1
+    /// </summary>
     public void ResetHorniness()
     {
         Horniness = Random.Range(1, (creatureData.MaxHorniness / 2) + 1);

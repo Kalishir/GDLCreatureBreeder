@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.Events;
 
 public class PlayerMoney : MonoBehaviour
 {
+    public event UnityAction<int> moneyChanged;
     private static PlayerMoney instance;
     static public PlayerMoney Instance
     {
@@ -10,17 +11,31 @@ public class PlayerMoney : MonoBehaviour
         {
             return instance;
         }
+
+        private set
+        {
+            instance = value;
+        }
     }
 
     [SerializeField] private int startingMoney = 500;
     [SerializeField] private int currentMoney;
-    
 
-    void Awake()
+
+    public void Awake()
     {
-        instance = this;
-        //TODO should be changed when we introduce saving/loading
-        currentMoney = startingMoney;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            currentMoney = startingMoney;
+            //Load Creatures from JSON
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
     }
 
     public bool CheckIfWeCanPayForThisCreatureIfSoBuyIt(int price)
@@ -28,6 +43,8 @@ public class PlayerMoney : MonoBehaviour
         if (currentMoney >= price)
         {
             currentMoney -= price;
+            if (moneyChanged != null)
+                moneyChanged(currentMoney);
             return true;
         }
         return false;
@@ -36,5 +53,7 @@ public class PlayerMoney : MonoBehaviour
     public void AddMoney(int amount)
     {
         currentMoney += amount;
+        if (moneyChanged != null)
+            moneyChanged(currentMoney);
     }
 }

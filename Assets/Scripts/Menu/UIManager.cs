@@ -15,6 +15,10 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]private GameObject managmentContent;
 
+    private GameObject[] displayObjects;
+
+    [SerializeField] private StoreManager storeManager;
+
     private List<Image> images = new List<Image>(10);
 
     private Color originalColor;
@@ -25,11 +29,15 @@ public class UIManager : MonoBehaviour
 
     private Image[] creatureDisplays;
 
-    [SerializeField] private HolderOfThings currentSelectedItem;
+    [SerializeField] private CreaturePrefabManager currentSelectedItem;
 
-    public HolderOfThings CurrentSelectedItem 
+    public CreaturePrefabManager CurrentSelectedItem 
     {
         get { return currentSelectedItem; }
+        private set
+        {
+            currentSelectedItem = value;
+        }
     }
 
     private bool breedingWindowIsOpen = false;
@@ -64,7 +72,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        var displayObjects = GameObject.FindGameObjectsWithTag("CreatureWindow");
+        displayObjects = GameObject.FindGameObjectsWithTag("CreatureWindow");
         creatureDisplays = new Image[displayObjects.Length];
         for (int i = 0; i < displayObjects.Length; i++)
         {
@@ -90,7 +98,7 @@ public class UIManager : MonoBehaviour
         }
         if (theImage != null)
         {
-            currentSelectedItem = theImage.transform.parent.parent.GetComponent<HolderOfThings>();
+            CurrentSelectedItem = theImage.transform.parent.parent.GetComponent<CreaturePrefabManager>();
         }
             
 
@@ -141,7 +149,7 @@ public class UIManager : MonoBehaviour
     public void CanIMoveCreatureToBreeding(GameObject theCreature)
     {
         //Get creature and the breeding script
-        var creature = PlayerInventory.Instance.GetCreatureByUniqueID(theCreature.GetComponent<HolderOfThings>().UniqueID);
+        var creature = PlayerInventory.Instance.GetCreatureByUniqueID(theCreature.GetComponent<CreaturePrefabManager>().UniqueID);
         var breeding = breedingContent.GetComponent<Breeding>();
 
         //stores a backend reference in breeding
@@ -153,7 +161,7 @@ public class UIManager : MonoBehaviour
     public void MoveBreedingContentToManagment()
     {
         //Get all children in breedingcontent Gameobject and move them to managment
-        foreach (var child in breedingContent.transform.GetComponentsInChildren<HolderOfThings>())
+        foreach (var child in breedingContent.transform.GetComponentsInChildren<CreaturePrefabManager>())
         {
             child.transform.SetParent(managmentContent.transform);
         }

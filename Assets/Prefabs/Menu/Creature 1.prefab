@@ -144,8 +144,8 @@ GameObject:
   - 222: {fileID: 22214922}
   - 114: {fileID: 11422688}
   - 114: {fileID: 11483952}
-  - 114: {fileID: 11439614}
   - 114: {fileID: 11495676}
+  - 114: {fileID: 11409570}
   m_Layer: 5
   m_Name: Creature 1
   m_TagString: Untagged
@@ -234,6 +234,20 @@ MonoBehaviour:
   m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
+--- !u!114 &11409570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e0b90f4d8e0ca34bb845e5462962169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureBackground: {fileID: 11439738}
+  creatureImage: {fileID: 11428642}
+  uniqueID: 
 --- !u!114 &11416510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -363,19 +377,6 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
---- !u!114 &11439614
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 186106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbd1247ca28c6d041854dd0c0adc4b56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creatureBackground: {fileID: 11439738}
-  creatureImage: {fileID: 11428642}
 --- !u!114 &11439738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -501,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6254e2075b2468646bc01877c8a1e286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holder: {fileID: 11439614}
+  creaturePrefabManager: {fileID: 11409570}
 --- !u!114 &11495676
 MonoBehaviour:
   m_ObjectHideFlags: 1

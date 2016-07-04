@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class SettingUpListeners : MonoBehaviour
 {
     
-    [SerializeField] public HolderOfThings holder;
+    [SerializeField] public CreaturePrefabManager creaturePrefabManager;
 
     private PointerUIHelper uiHelper;
 
@@ -21,10 +21,9 @@ public class SettingUpListeners : MonoBehaviour
 
 
         //Sets up the button to make the button selected when clicked
-	    uiHelper.onPointerClick.AddListener(() => theManager.ItemSelected(holder.CreatureBackground));
+	    uiHelper.onPointerClick.AddListener(() => theManager.ItemSelected(creaturePrefabManager.CreatureBackground));
         //sets up the button to show the creature on the big display when clicked
-        uiHelper.onPointerClick.AddListener(() => theManager.ShowCreatureOnDisplay(holder.CreatureImage.sprite));
-
+        uiHelper.onPointerClick.AddListener(() => theManager.ShowCreatureOnDisplay(creaturePrefabManager.CreatureImage.sprite));
 	    var cake = GetComponent<DoubleClick>();
 	    uiHelper.onPointerClick.AddListener(() => cake.Clicked());
 	}

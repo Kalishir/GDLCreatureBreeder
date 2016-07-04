@@ -53,12 +53,8 @@ public class PlayerInventory : MonoBehaviour
             return null;
 
         GameObject newCreature = GameObject.Instantiate(creaturePrefab);
-        newCreature.name = creature.CreatureName;
-        newCreature.transform.Find("CreatureInfo/Name").gameObject.GetComponent<Text>().text = creature.CreatureName;
-        newCreature.transform.Find("CreatureInfo/Price/Price").gameObject.GetComponent<Text>().text = creature.CurrentValue.ToString();
-        newCreature.GetComponent<HolderOfThings>().UniqueID = creature.ID;
-        newCreature.transform.Find("CreatureIcon/Image").gameObject.GetComponent<Image>().sprite = SpriteManager.Manager.GetCreatureSprite(creature);
-        //TODO: Add event handling to prefab;
+        var prefabManager = newCreature.GetComponent<CreaturePrefabManager>();
+        prefabManager.Initialize(creature);
 
         return newCreature;
     }

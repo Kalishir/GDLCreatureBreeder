@@ -23,6 +23,18 @@ public class StoreManager : MonoBehaviour
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
     }
 
+    void Update()
+    {
+        while (creatureList.Creatures.Count < creatureCount)
+        {
+            CreatureData newCreature = CreatureManager.Manager.GetRandomCreature();
+            Creature creature = new Creature(newCreature);
+            creatureList.AddCreature(creature);
+            GameObject newCreaturePanel = GetCreaturePanel(creature);
+            newCreaturePanel.transform.SetParent(StoreListFrame.transform, false);
+        }
+    }
+
 
     private void PopulateStore(CreatureList list)
     {
@@ -49,12 +61,8 @@ public class StoreManager : MonoBehaviour
             return null;
 
         GameObject newCreature = GameObject.Instantiate(creaturePrefab);
-        newCreature.name = creature.CreatureName;
-        newCreature.transform.Find("CreatureInfo/Name").gameObject.GetComponent<Text>().text = creature.CreatureName;
-        newCreature.transform.Find("CreatureInfo/Price/Price").gameObject.GetComponent<Text>().text = creature.CurrentValue.ToString();
-        newCreature.GetComponent<HolderOfThings>().UniqueID = creature.ID;
-        newCreature.transform.Find("CreatureIcon/Image").gameObject.GetComponent<Image>().sprite = SpriteManager.Manager.GetCreatureSprite(creature);
-        //TODO: Add event handling to prefab;
+        var prefabManager = newCreature.GetComponent<CreaturePrefabManager>();
+        prefabManager.Initialize(creature);
 
         UIPanelDictionary.Add(creature, newCreature);
         return newCreature;
@@ -107,8 +115,6 @@ public class StoreManager : MonoBehaviour
             //Checks if we can afford this creature. takes away the money if we can.
             if (PlayerMoney.Instance.CheckIfWeCanPayForThisCreatureIfSoBuyIt(theCreature.CurrentValue))
             {
-                Debug.Log("Bought a creature");
-
                 PlayerInventory.Instance.AddCreatureToInventory(theCreature);
 
                 creatureList.RemoveCreature(theCreature);

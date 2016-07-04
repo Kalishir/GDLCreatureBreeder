@@ -22,6 +22,10 @@ public class Breeding : MonoBehaviour
         if (creature1.Type == creature2.Type)
         {
             newCreature = CreatureManager.Manager.GetCreatureOfType(creature1.Type);
+            creature1.ResetHealth();
+            creature1.ResetHorniness();
+            creature2.ResetHealth();
+            creature2.ResetHorniness();
         }
 
         return newCreature;

@@ -31,7 +31,14 @@ public class PlayerInventory : MonoBehaviour
     {
         list.AddCreature(CreatureManager.Manager.GetCreatureOfType(CreatureType.Slime));
         list.AddCreature(CreatureManager.Manager.GetCreatureOfType(CreatureType.Slime));
-
+        /*
+        list.AddCreature(CreatureManager.Manager.GetCreatureOfType(CreatureType.Arachnid));
+        list.AddCreature(CreatureManager.Manager.GetCreatureOfType(CreatureType.Avian));
+        list.AddCreature(CreatureManager.Manager.GetCreatureOfType(CreatureType.Canine));
+        list.AddCreature(CreatureManager.Manager.GetCreatureOfType(CreatureType.Demon));
+        list.AddCreature(CreatureManager.Manager.GetCreatureOfType(CreatureType.Dragon));
+        list.AddCreature(CreatureManager.Manager.GetCreatureOfType(CreatureType.Equine));
+        */
         foreach (var creature in creatureList.Creatures)
         {
             GameObject newCreaturePanel = CreateCreatureObject(creature);
@@ -50,7 +57,7 @@ public class PlayerInventory : MonoBehaviour
         newCreature.transform.Find("CreatureInfo/Name").gameObject.GetComponent<Text>().text = creature.CreatureName;
         newCreature.transform.Find("CreatureInfo/Price/Price").gameObject.GetComponent<Text>().text = creature.CurrentValue.ToString();
         newCreature.GetComponent<HolderOfThings>().UniqueID = creature.ID;
-        //TODO: Add creature Icon to prefab;
+        newCreature.transform.Find("CreatureIcon/Image").gameObject.GetComponent<Image>().sprite = SpriteManager.Manager.GetCreatureSprite(creature);
         //TODO: Add event handling to prefab;
 
         return newCreature;

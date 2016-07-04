@@ -13,7 +13,7 @@ public class PlayerMoney : MonoBehaviour
     }
 
     [SerializeField] private int startingMoney = 500;
-    private int currentMoney;
+    [SerializeField] private int currentMoney;
     
 
     void Awake()

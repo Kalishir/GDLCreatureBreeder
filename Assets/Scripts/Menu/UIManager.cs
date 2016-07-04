@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
 
     private Image[] creatureDisplays;
 
-    private HolderOfThings currentSelectedItem;
+    [SerializeField] private HolderOfThings currentSelectedItem;
 
     public HolderOfThings CurrentSelectedItem 
     {

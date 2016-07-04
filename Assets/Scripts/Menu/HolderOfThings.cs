@@ -5,6 +5,7 @@ using UnityEngine.UI;
 /// <summary>
 /// just references to images and such
 /// </summary>
+[System.Serializable]
 public class HolderOfThings : MonoBehaviour
 {
     [SerializeField]
@@ -12,7 +13,7 @@ public class HolderOfThings : MonoBehaviour
     [SerializeField]
     private Image creatureImage;
     
-    private string uniqueID;
+    [SerializeField] private string uniqueID;
 
     public Image CreatureImage
     {

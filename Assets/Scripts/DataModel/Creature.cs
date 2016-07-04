@@ -131,8 +131,8 @@ public class Creature
         ResetHorniness();
         RecalculateValue();
 
-        spritePath = "/Resources/Sprites/Creatures/" + System.Enum.GetName(Type.GetType(), Type) + "/" + CreatureName;
-        iconPath = "/Resources/Icon/Creatures/" + System.Enum.GetName(Type.GetType(), Type) + "/" + CreatureName;
+        spritePath = "Sprites/" + System.Enum.GetName(Type.GetType(), Type) + "/" + CreatureName;
+        iconPath = "Icon/" + System.Enum.GetName(Type.GetType(), Type) + "/" + CreatureName;
 
         guid = Guid.NewGuid();
     }

@@ -10,9 +10,6 @@ GDL Creature Breeder is a creature breeding game being created by members of the
 
 Join the <a href="https://discord.gg/0TYNJfCU4De7YIk8">Discord Server</a> if you want to get involved with the project.
 After joining ask in general chat about the project.
-<<<<<<< HEAD
+
 PM Kalishir or Serious Table if you want access to the project files.
 
-=======
-PM Kalishir or Serious Table if you want access to the project files.
->>>>>>> master

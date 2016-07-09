@@ -1,0 +1,8 @@
+{
+	"type" : 5,
+	"name" : "SomeDragon",
+	"maxHealth" : 100,
+	"maxHorniness" : 100,
+  "libido": 10,
+  "baseValue" : 1000
+}

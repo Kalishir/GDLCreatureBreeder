@@ -1,0 +1,8 @@
+{
+	"type" : 10,
+	"name" : "SomeInsect",
+	"maxHealth" : 20,
+	"maxHorniness" : 30,
+  "libido": 15,
+  "baseValue" : 225
+}

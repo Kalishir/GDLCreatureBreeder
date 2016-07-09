@@ -1,0 +1,8 @@
+{
+	"type" : 2,
+	"name" : "SomeBird",
+	"maxHealth" : 40,
+	"maxHorniness" : 45,
+  "libido": 15,
+  "baseValue" : 400
+}

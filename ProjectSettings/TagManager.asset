@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UIManager
   - CreatureWindow
+  - StoreManager
   layers:
   - Default
   - TransparentFX

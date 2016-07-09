@@ -36,6 +36,18 @@ public class CreaturePrefabManager : MonoBehaviour
         creatureSprite = gameObject.transform.Find("CreatureIcon/Image").gameObject.GetComponent<Image>();
     }
 
+    void Start()
+    { 
+        PointerUIHelper uiHelper;
+        uiHelper = GetComponent<PointerUIHelper>();
+        UIManager theManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+
+        uiHelper.onPointerClick.AddListener(() => theManager.UpdateSelectedItem(this));
+
+        var doubleClickHandler = GetComponent<DoubleClick>();
+        uiHelper.onPointerClick.AddListener(() => doubleClickHandler.Clicked());
+    }
+
     void OnEnable()
     {
         //Add Event Subscriptions

@@ -31,6 +31,10 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private CreaturePrefabManager currentSelectedItem;
 
+    private UpdateInt healthObject;
+
+    private UpdateInt horninessObject;
+
     public CreaturePrefabManager CurrentSelectedItem 
     {
         get { return currentSelectedItem; }
@@ -80,7 +84,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ItemSelected(Image theImage)
+    private void ItemSelected(Image theImage)
     {
         //First check if an image like the one we got. actually exists
         bool exists = false;
@@ -95,17 +99,80 @@ public class UIManager : MonoBehaviour
         {
             images.Add(theImage);
             originalColor = theImage.color;
-        }
-        if (theImage != null)
-        {
-            CurrentSelectedItem = theImage.transform.parent.parent.GetComponent<CreaturePrefabManager>();
-        }
-            
+        }   
 
         SetTheColor(theImage);
     }
 
-    public void ShowCreatureOnDisplay(Sprite creatureSprite)
+    public void ChangeScreens(GameObject newScreen)
+    {
+        UnsubscribeEvents();
+        ClearSelection();
+
+        healthObject = newScreen.transform.Find("Content/DisplayPane/CreatureWindow/Health").GetComponent<UpdateInt>();
+        horninessObject = newScreen.transform.Find("Content/DisplayPane/CreatureWindow/Horniness").GetComponent<UpdateInt>();
+    }
+
+    public void UpdateSelectedItem(CreaturePrefabManager creaturePrefabManager)
+    {
+        ItemSelected(creaturePrefabManager.CreatureBackground);
+        ShowCreatureOnDisplay(creaturePrefabManager.CreatureImage.sprite);
+
+        UnsubscribeEvents();
+        CurrentSelectedItem = creaturePrefabManager;
+        SubscribeEvents();
+    }
+
+    private void SubscribeEvents()
+    {
+        if (currentSelectedItem == null)
+            return;
+        if (healthObject == null)
+            return;
+        if (horninessObject == null)
+            return;
+
+
+        Creature currentCreature = GetCreatureByGUID(CurrentSelectedItem.UniqueID);
+        healthObject.UpdateValue(currentCreature.Health);
+        horninessObject.UpdateValue(currentCreature.Horniness);
+        currentCreature.HealthChanged += healthObject.UpdateValue;
+        currentCreature.HorninessChanged += horninessObject.UpdateValue;
+    }
+
+    private void UnsubscribeEvents()
+    {
+        if (currentSelectedItem == null)
+            return;
+        if (healthObject == null)
+            return;
+        if (horninessObject == null)
+            return;
+
+        Creature currentCreature = GetCreatureByGUID(CurrentSelectedItem.UniqueID);
+        currentCreature.HealthChanged -= healthObject.UpdateValue;
+        currentCreature.HorninessChanged -= horninessObject.UpdateValue;
+    }
+
+    private Creature GetCreatureByGUID(string guid)
+    {
+        Creature creature = null;
+
+        creature = PlayerInventory.Instance.GetCreatureByUniqueID(guid);
+        if (creature == null)
+        {
+            GameObject[] gos = GameObject.FindGameObjectsWithTag("StoreManager");
+            foreach (var go in gos)
+            {
+                creature = go.GetComponent<StoreManager>().GetCreatureByUniqueID(guid);
+                if (creature != null)
+                    break;
+            }
+        }
+        return creature;
+    }
+
+    private void ShowCreatureOnDisplay(Sprite creatureSprite)
     {
         for (int i = 0; i < creatureDisplays.Length; i++)
         {

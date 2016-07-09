@@ -73,6 +73,20 @@ public class CreatureManager : MonoBehaviour, System.IDisposable
             return;
 
         string path = "CreatureData/";
+        foreach (var creatureName in System.Enum.GetNames(typeof(CreatureType)))
+        {
+            if (creatureName == "Invalid")
+                continue;
+
+            var fileContents = Resources.Load<TextAsset>(path + creatureName + "/info").text;
+            var creatureNames = fileContents.Split(' ');
+            foreach (var name in creatureNames)
+            {
+                CreatureData creature = JsonUtility.FromJson<CreatureData>(Resources.Load<TextAsset>(path + creatureName + "/" + name).text);
+                dictionary[creature.Type].Add(creature);
+            }
+        }
+        /*
         var info = new DirectoryInfo("Assets/Resources/" + path);
         var folders = info.GetDirectories();
         foreach (var folder in folders)
@@ -88,6 +102,7 @@ public class CreatureManager : MonoBehaviour, System.IDisposable
             }
 
         }
+        */
 
         creaturesDictionary = dictionary;
     }

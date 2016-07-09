@@ -71,35 +71,26 @@ public class SpriteManager : MonoBehaviour, System.IDisposable
 
         dictionary.Add(defaultImageName, Resources.Load<Sprite>("Sprites/default") as Sprite);
 
-        string path = "Sprites/";
-        var info = new DirectoryInfo("Assets/Resources/" + path);
-        var folders = info.GetDirectories();
-        foreach (var folder in folders)
-        {
-            string subFolderPath = path + folder.Name + "/";
-            var subFolderInfo = new DirectoryInfo("Assets/Resources/" + subFolderPath);
-            var files = subFolderInfo.GetFiles("*.png");
-            foreach (var file in files)
-            {
-                string fileName = subFolderPath + file.Name.Split('.')[0];
-                Sprite sprite = Resources.Load<Sprite>(fileName) as Sprite;
-                if (sprite == null) Debug.Log("No Sprite");
-                dictionary.Add(fileName.ToLower(), sprite);
-            }
-
-        }
-
         spritesDictionary = dictionary;
     }
 
     public Sprite GetCreatureSprite(CreatureType type, string name)
     {
-        string path = "Assets/Resources/" + type.ToString() + "/" + name;
+        string path = "Sprites/" + type.ToString() + "/" + name;
         path = path.ToLower();
         if (spritesDictionary.ContainsKey(path))
         {
-            Debug.Log(path);
             return spritesDictionary[path];
+        }
+        else
+        {
+            var sprite = Resources.Load<Sprite>(path) as Sprite;
+            if (sprite != null)
+            {
+                spritesDictionary.Add(path, sprite);
+
+                return sprite;
+            }
         }
 
         return spritesDictionary[defaultImageName];
@@ -107,11 +98,22 @@ public class SpriteManager : MonoBehaviour, System.IDisposable
 
     public Sprite GetCreatureSprite(CreatureData data)
     {
-        string path = "Assets/Resources/" + data.Type.ToString() + "/" + data.Name;
+        string path = "Sprites/" + data.Type.ToString() + "/" + data.Name;
         path = path.ToLower();
         if (spritesDictionary.ContainsKey(path))
+        {
             return spritesDictionary[path];
+        }
+        else
+        {
+            var sprite = Resources.Load<Sprite>(path) as Sprite;
+            if (sprite != null)
+            {
+                spritesDictionary.Add(path, sprite);
 
+                return sprite;
+            }
+        }
         return spritesDictionary[defaultImageName];
     }
 
@@ -120,7 +122,19 @@ public class SpriteManager : MonoBehaviour, System.IDisposable
         string path = creature.SpritePath;
         path = path.ToLower();
         if (spritesDictionary.ContainsKey(path))
+        {
             return spritesDictionary[path];
+        }
+        else
+        {
+            var sprite = Resources.Load<Sprite>(path) as Sprite;
+            if (sprite != null)
+            {
+                spritesDictionary.Add(path, sprite);
+
+                return sprite;
+            }
+        }
 
         return spritesDictionary[defaultImageName];
     }

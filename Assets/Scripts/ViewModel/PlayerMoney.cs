@@ -19,7 +19,7 @@ public class PlayerMoney : MonoBehaviour
     }
 
     [SerializeField] private int startingMoney = 500;
-    [SerializeField] private int currentMoney;
+    private int currentMoney;
 
 
     public void Awake()
@@ -38,7 +38,7 @@ public class PlayerMoney : MonoBehaviour
         }
     }
 
-    public bool CheckIfWeCanPayForThisCreatureIfSoBuyIt(int price)
+    public bool CheckIfWeCanPayForThisThenBuyIt(int price)
     {
         if (currentMoney >= price)
         {

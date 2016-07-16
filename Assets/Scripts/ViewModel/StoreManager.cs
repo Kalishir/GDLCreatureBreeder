@@ -113,7 +113,7 @@ public class StoreManager : MonoBehaviour
             var theCreature = GetCreatureByUniqueID(uiManager.CurrentSelectedItem.UniqueID);
 
             //Checks if we can afford this creature. takes away the money if we can.
-            if (PlayerMoney.Instance.CheckIfWeCanPayForThisCreatureIfSoBuyIt(theCreature.CurrentValue))
+            if (PlayerMoney.Instance.CheckIfWeCanPayForThisThenBuyIt(theCreature.CurrentValue))
             {
                 PlayerInventory.Instance.AddCreatureToInventory(theCreature);
 

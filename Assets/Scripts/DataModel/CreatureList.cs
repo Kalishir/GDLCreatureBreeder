@@ -47,8 +47,7 @@ public class CreatureList
     /// </summary>
     public void RemoveCreature(Creature creature)
     {
-        //TODO: RemoveCreature by GUID.
-        creatures.Remove(creature);
+        creatures.RemoveAll((x) => { return x.ID == creature.ID; });
     }
 
 }

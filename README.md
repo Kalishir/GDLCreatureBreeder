@@ -2,12 +2,13 @@
 
 --------------------
 
-## What is This?
+Welcome and thanks for your interest in the Game Developer League’s community project, the GDL Creature Breeder!
 
-GDL Creature Breeder is a creature breeding game being created by members of the Game Developers League community.
+HacknPlan - https://app.hacknplan.com/p/8697/summary
+GitHub Link - https://github.com/Kalishir/GDLCreatureBreeder/
+Google Drive Folder - https://drive.google.com/open?id=0B4zEWLCbkQNCUVJuUjBfZzJodzQ
+Discord Channel: #gdl-creature-breeder
 
-## Getting Involved
+To join the Discord Channel, join the GDL Discord (https://discord.gg/0TYNJfCU4De7YIk8), and type ‘!role add breeders’
 
-Join the <a href="https://discord.gg/0TYNJfCU4De7YIk8">Discord Server</a> if you want to get involved with the project.
-After joining ask in general chat about the project.
-PM Kalishir or Serious Table if you want access to the project files.
+In order to gain access to see and modify the above, send a ping to @Kalishir (Kalishir#7639) or @Serious Table (Serious Table#8141) on Discord with your email address, and we’ll add you ASAP!

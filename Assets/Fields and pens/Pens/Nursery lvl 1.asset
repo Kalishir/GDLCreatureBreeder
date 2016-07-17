@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5605da86382e0849a193077f9b81da9, type: 3}
+  m_Name: Nursery lvl 1
+  m_EditorClassIdentifier: 
+  upgradeTo: {fileID: 11400000, guid: 99877c512e7e3144cb86df9e79b201a1, type: 2}
+  costOfUpgrading: 505
+  fieldSize: 1
+  breedingChance: 0
+  healthGain: 0
+  horninessGain: 0
+  cashGain: 1

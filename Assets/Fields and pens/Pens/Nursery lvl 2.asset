@@ -8,13 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5605da86382e0849a193077f9b81da9, type: 3}
+  m_Script: {fileID: 11500000, guid: b840c72cb47d69142bb38410608ec5c4, type: 3}
   m_Name: Nursery lvl 2
   m_EditorClassIdentifier: 
   upgradeTo: {fileID: 0}
   costOfUpgrading: 0
   fieldSize: 1
-  breedingChance: 0
-  healthGain: 0
-  horninessGain: 0
-  cashGain: 3000
+  breedingChance: 1
+  healthGain: 1
+  horninessGain: 1
+  cashGain: 200

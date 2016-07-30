@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 /// <summary>
 /// The instances of fields. manages the currentcreatures
@@ -44,6 +45,26 @@ public class Pen : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U))
         {
             creatureField = creatureField.UpgradeField();
+        }
+    }
+
+    public void UpgradePen(Image upgradeImage)
+    {
+        var tempPen = creatureField;
+        creatureField = creatureField.UpgradeField();
+
+        //TODO make upgradebutton flash if the upgrade does not go through
+        //Update did not go through
+
+        if (tempPen == creatureField)
+        {
+            upgradeImage.color = Color.red;
+            Debug.Log("its the same");
+        }
+        else
+        {
+            upgradeImage.color = Color.green;
+            Debug.Log("its not the same");
         }
     }
 }

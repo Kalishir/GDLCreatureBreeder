@@ -74,16 +74,12 @@ public class Breeding : MonoBehaviour
         {
             //Create and add creature to inventory
             var creature = BreedCreature(firstCreature, secondCreature);
-            PlayerInventory.Instance.AddCreatureToInventory(creature);
+            //PlayerInventory.Instance.AddCreatureToInventory(creature);
 
             //Move the creatures visually back into inventory
             //Set creatures to null
             firstCreature = null;
             secondCreature = null;
-
-            //Move FrontEnd stuff to managmentscreen 
-            UIManager.Instance.MoveBreedingContentToManagment();
-            UIManager.Instance.ClearSelection();
 
         }
     }

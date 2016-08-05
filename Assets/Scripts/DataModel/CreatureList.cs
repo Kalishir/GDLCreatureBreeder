@@ -20,9 +20,16 @@ public class CreatureList
     /// <summary>
     /// Creates a new CreatureList object. Initializes the internal list.
     /// </summary>
-    public CreatureList()
+    public CreatureList(int capacity = 0)
     {
-        creatures = new List<Creature>();
+        if (capacity == 0)
+        {
+            creatures = new List<Creature>();
+        }
+        else
+        {
+            creatures = new List<Creature>(capacity);
+        }
     }
 
     /// <summary>
@@ -30,8 +37,12 @@ public class CreatureList
     /// </summary>
     public void AddCreature(CreatureData creatureData)
     {
-        Creature newCreature = new Creature(creatureData);
-        creatures.Add(newCreature);
+        if (Creatures.Count < Creatures.Capacity)
+        {
+            Creature newCreature = new Creature(creatureData);
+            creatures.Add(newCreature);
+        }
+        
     }
 
     /// <summary>
@@ -39,7 +50,10 @@ public class CreatureList
     /// </summary>
     public void AddCreature(Creature creature)
     {
-        creatures.Add(creature);
+        if (Creatures.Count < Creatures.Capacity)
+        {
+            creatures.Add(creature);
+        }
     }
 
     /// <summary>

@@ -12,7 +12,7 @@ public class StoreManager : MonoBehaviour
 
     private Dictionary<Creature, GameObject> UIPanelDictionary;
 
-    private UIManager uiManager;
+    //private UIManager uiManager;
 
     // Use this for initialization
     void Start()
@@ -20,7 +20,7 @@ public class StoreManager : MonoBehaviour
         creatureList = new CreatureList();
         UIPanelDictionary = new Dictionary<Creature, GameObject>();
         PopulateStore(creatureList);
-        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        //uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
     }
 
     void Update()
@@ -61,8 +61,9 @@ public class StoreManager : MonoBehaviour
             return null;
 
         GameObject newCreature = GameObject.Instantiate(creaturePrefab);
-        var prefabManager = newCreature.GetComponent<CreaturePrefabManager>();
-        prefabManager.Initialize(creature);
+        //TODO: Setup Creature Prefab
+        //var prefabManager = newCreature.GetComponent<CreaturePrefabManager>();
+        //prefabManager.Initialize(creature);
 
         UIPanelDictionary.Add(creature, newCreature);
         return newCreature;
@@ -108,7 +109,8 @@ public class StoreManager : MonoBehaviour
 
     public void BuySelectedCreature()
     {
-        if (uiManager.CurrentSelectedItem != null)
+        //TODO: Rewrite
+        /*if (uiManager.CurrentSelectedItem != null)
         {
             var theCreature = GetCreatureByUniqueID(uiManager.CurrentSelectedItem.UniqueID);
 
@@ -123,5 +125,6 @@ public class StoreManager : MonoBehaviour
                 Destroy(uiManager.CurrentSelectedItem.gameObject);
             }
         }
+        */
     }
 }

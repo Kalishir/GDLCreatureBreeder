@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dab98028cea9264cb0656d09a3fa77a, type: 3}
+  m_Name: Milking Shed Level 1
+  m_EditorClassIdentifier: 
+  creatureCapacity: 1
+  baseBreedingChance: 0
+  healthGainedAtEndOfDay: -1
+  horinessGainedAtEndOfDay: -1
+  goldGainedAtEndOfDay: 10
+  canUpgrade: 0
+  upgradesTo: {fileID: 0}
+  costToUpgrade: 0

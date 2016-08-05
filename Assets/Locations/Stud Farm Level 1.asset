@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dab98028cea9264cb0656d09a3fa77a, type: 3}
+  m_Name: Stud Farm Level 1
+  m_EditorClassIdentifier: 
+  creatureCapacity: 2
+  baseBreedingChance: 50
+  healthGainedAtEndOfDay: 0
+  horinessGainedAtEndOfDay: 4
+  goldGainedAtEndOfDay: 0
+  canUpgrade: 1
+  upgradesTo: {fileID: 11400000, guid: 5b470403923b74f40908b8bd625b22fa, type: 2}
+  costToUpgrade: 3000

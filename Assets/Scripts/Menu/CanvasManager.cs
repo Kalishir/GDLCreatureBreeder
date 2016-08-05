@@ -55,7 +55,7 @@ public class CanvasManager : MonoBehaviour
 
         if (currentSelectedCanvas == null)
         {
-            CurrentSelectedCanvas = canvases[0];
+            //CurrentSelectedCanvas = canvases[0];
         }
 
         Transition();
@@ -98,7 +98,11 @@ public class CanvasManager : MonoBehaviour
             StartCoroutine(FadeCanvas(previousSelectedCanvas, 0f, 0.2f, 0, true));
         }
         //EnableCanvas(currentSelectedCanvas);
-        StartCoroutine(FadeCanvas(currentSelectedCanvas, 1f, 0.2f, 0.2f, false));
+        if (currentSelectedCanvas != null)
+        {
+            StartCoroutine(FadeCanvas(currentSelectedCanvas, 1f, 0.2f, 0.2f, false));
+        }
+        
     }
 
     /// <summary>

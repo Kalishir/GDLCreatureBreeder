@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [CreateAssetMenu]
 public class CreatureHold : CreatureHoldEffects
@@ -18,9 +19,14 @@ public class CreatureHold : CreatureHoldEffects
     [SerializeField]private int horninessGain = 0;
     [SerializeField]private int cashGain = 0;
 
+    private List<Creature> tempCreatures = new List<Creature>(); 
+
 
     public void DayHasEnded(GameObject go)
     {
+        tempCreatures.Clear();
+
+
         var penGameObject = go.GetComponent<Pen>();
         var creatureCount = penGameObject.ListOfCreatures.Creatures;
 
@@ -37,21 +43,23 @@ public class CreatureHold : CreatureHoldEffects
             var rolled = Random.Range(0f, 100f);
             if (rolled < breedingChance)
             {
-
+                
                 Debug.Log(rolled);
                 //Breeding succesful
                 //TODO create a new creature and add it to this field or something.
+
                 //We create the creatures after we have gone through the loop because you don't want to modify it when looking through the loop
-                howManyCreaturesToMake++;
+                tempCreatures.Add(creature);
+
             }
 
             //Give the player money
             PlayerMoney.Instance.AddMoney(cashGain);
         }
 
-        for (int i = 0; i < howManyCreaturesToMake; i++)
+        for (int i = 0; i < tempCreatures.Count; i++)
         {
-            penGameObject.ListOfCreatures.AddCreature(CreatureManager.Manager.GetCreatureOfType(CreatureType.Slime));
+            penGameObject.ListOfCreatures.AddCreature(CreatureManager.Manager.GetCreatureOfType(tempCreatures[i].Type));
         }
     }
 

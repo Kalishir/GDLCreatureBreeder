@@ -49,6 +49,7 @@ public class LandMaster : MonoBehaviour
     {
         foreach (var theFields in myCreatureFields)
         {
+            Debug.Log("TEST");
             theFields.CreatureField.DayHasEnded(theFields.gameObject);
         }
     }

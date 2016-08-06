@@ -21,21 +21,37 @@ public class CreatureHold : CreatureHoldEffects
 
     public void DayHasEnded(GameObject go)
     {
+        var penGameObject = go.GetComponent<Pen>();
+        var creatureCount = penGameObject.ListOfCreatures.Creatures;
+
+        var howManyCreaturesToMake = 0;
+
+
         //make every creature in creaturelist gain health,horninessand make the player able to get money
-        foreach (var creature in go.GetComponent<Pen>().ListOfCreatures.Creatures)
+        foreach (var creature in creatureCount)
         {
             creature.Health += healthGain;
             creature.Horniness += horninessGain;
 
             //Breeding
-            if (Random.Range(0f, 100f) < breedingChance)
+            var rolled = Random.Range(0f, 100f);
+            if (rolled < breedingChance)
             {
+
+                Debug.Log(rolled);
                 //Breeding succesful
                 //TODO create a new creature and add it to this field or something.
+                //We create the creatures after we have gone through the loop because you don't want to modify it when looking through the loop
+                howManyCreaturesToMake++;
             }
 
             //Give the player money
             PlayerMoney.Instance.AddMoney(cashGain);
+        }
+
+        for (int i = 0; i < howManyCreaturesToMake; i++)
+        {
+            penGameObject.ListOfCreatures.AddCreature(CreatureManager.Manager.GetCreatureOfType(CreatureType.Slime));
         }
     }
 

@@ -30,8 +30,6 @@ public class CreatureHold : CreatureHoldEffects
         var penGameObject = go.GetComponent<Pen>();
         var creatureCount = penGameObject.ListOfCreatures.Creatures;
 
-        var howManyCreaturesToMake = 0;
-
 
         //make every creature in creaturelist gain health,horninessand make the player able to get money
         foreach (var creature in creatureCount)

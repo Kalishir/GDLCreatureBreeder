@@ -5,13 +5,13 @@ using System.Collections;
 public class ResizeByChildren : MonoBehaviour {
 
     [SerializeField] private int heightOfChildObject;
-    private VerticalLayoutGroup layoutGroup;
+    private GridLayoutGroup layoutGroup;
     private int lastChildCount;
 
 	// Use this for initialization
 	void Start ()
     {
-        layoutGroup = GetComponent<VerticalLayoutGroup>();
+        layoutGroup = GetComponent<GridLayoutGroup>();
         UpdateSizing();
 	}
 
@@ -27,7 +27,10 @@ public class ResizeByChildren : MonoBehaviour {
     public void UpdateSizing()
     {
         RectTransform newSize = transform as RectTransform;
-        int newHeight = (transform.childCount * heightOfChildObject) + (transform.childCount + 1) * layoutGroup.padding.vertical;
+        int newHeight = (transform.childCount/4 * heightOfChildObject) + (transform.childCount/4 + 1) * Mathf.RoundToInt(layoutGroup.spacing.y);
+        newHeight += layoutGroup.padding.top + layoutGroup.padding.bottom;
+        var parent = transform.parent as RectTransform;
+        newHeight -= Mathf.RoundToInt(parent.rect.height);
         newSize.sizeDelta = new Vector2(newSize.sizeDelta.x, newHeight);
         lastChildCount = transform.childCount;
     }

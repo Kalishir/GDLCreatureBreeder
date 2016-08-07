@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dab98028cea9264cb0656d09a3fa77a, type: 3}
-  m_Name: Stud Farm Level 3
+  m_Name: Milking Shed Level 2
   m_EditorClassIdentifier: 
-  creatureCapacity: 6
-  baseBreedingChance: 0.75
-  healthGainedAtEndOfDay: 0
-  horinessGainedAtEndOfDay: 8
-  goldGainedAtEndOfDay: 0
-  canUpgrade: 0
-  upgradesTo: {fileID: 0}
-  costToUpgrade: 0
+  creatureCapacity: 2
+  baseBreedingChance: 0
+  healthGainedAtEndOfDay: -1
+  horinessGainedAtEndOfDay: -1
+  goldGainedAtEndOfDay: 0.2
+  canUpgrade: 1
+  upgradesTo: {fileID: 11400000, guid: 0bf94ebd4083de5418092ead674965dd, type: 2}
+  costToUpgrade: 3000

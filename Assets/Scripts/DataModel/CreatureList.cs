@@ -24,7 +24,7 @@ public class CreatureList
     {
         if (capacity == 0)
         {
-            creatures = new List<Creature>();
+            creatures = new List<Creature>(500);
         }
         else
         {

@@ -15,7 +15,7 @@ MonoBehaviour:
   baseBreedingChance: 0
   healthGainedAtEndOfDay: -1
   horinessGainedAtEndOfDay: -1
-  goldGainedAtEndOfDay: 10
-  canUpgrade: 0
-  upgradesTo: {fileID: 0}
-  costToUpgrade: 0
+  goldGainedAtEndOfDay: 0.1
+  canUpgrade: 1
+  upgradesTo: {fileID: 11400000, guid: fff937cf32241bc41a2ca2651e895431, type: 2}
+  costToUpgrade: 1500

@@ -22,7 +22,7 @@ public class LocationInfo: ScriptableObject
         }
     }
 
-    [Range(0f, 100f)] [SerializeField] private float baseBreedingChance;
+    [Range(0f, 1f)] [SerializeField] private float baseBreedingChance;
 
     [SerializeField] private int healthGainedAtEndOfDay;
 
@@ -56,7 +56,7 @@ public class LocationInfo: ScriptableObject
     /// Gold gained per creature in the location at the end of the day
     /// Is a percentage based on the creatures value.
     /// </summary>
-    [Range(0, 100f)] [SerializeField] private float goldGainedAtEndOfDay;
+    [Range(0, 1f)] [SerializeField] private float goldGainedAtEndOfDay;
 
     public float GoldGainedAtEndOfDay
     {
@@ -73,6 +73,17 @@ public class LocationInfo: ScriptableObject
     [Space]
     [Header("Upgrade Information")]
     [SerializeField] bool canUpgrade;
+    public bool CanUpgrade
+    {
+        get
+        {
+            return canUpgrade;
+        }
+        private set
+        {
+            canUpgrade = value;
+        }
+    }
 
     [SerializeField] LocationInfo upgradesTo;
 
@@ -89,4 +100,15 @@ public class LocationInfo: ScriptableObject
     }
 
     [SerializeField] int costToUpgrade;
+    public int CostToUpgrade
+    {
+        get
+        {
+            return costToUpgrade;
+        }
+        private set
+        {
+            costToUpgrade = value;
+        }
+    }
 }

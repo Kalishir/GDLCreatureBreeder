@@ -53,11 +53,6 @@ public class CanvasManager : MonoBehaviour
             DisableCanvas(canvas);
         }
 
-        if (currentSelectedCanvas == null)
-        {
-            //CurrentSelectedCanvas = canvases[0];
-        }
-
         Transition();
     }
 

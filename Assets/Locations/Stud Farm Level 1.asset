@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Stud Farm Level 1
   m_EditorClassIdentifier: 
   creatureCapacity: 2
-  baseBreedingChance: 50
+  baseBreedingChance: 0.5
   healthGainedAtEndOfDay: 0
   horinessGainedAtEndOfDay: 4
   goldGainedAtEndOfDay: 0

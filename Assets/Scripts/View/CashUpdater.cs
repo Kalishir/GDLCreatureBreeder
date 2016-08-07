@@ -9,18 +9,18 @@ public class CashUpdater : MonoBehaviour
     void Start()
     {
         text = transform.Find("Text").GetComponent<Text>();
-        PlayerMoney.Instance.moneyChanged += UpdateCash;
+        PlayerMoney.Instance.MoneyChanged += UpdateCash;
     }
 
     void OnEnable()
     {
         if(PlayerMoney.Instance != null)
-            PlayerMoney.Instance.moneyChanged += UpdateCash;
+            PlayerMoney.Instance.MoneyChanged += UpdateCash;
     }
 
     void OnDisable()
     {
-        PlayerMoney.Instance.moneyChanged -= UpdateCash;
+        PlayerMoney.Instance.MoneyChanged -= UpdateCash;
     }
 
     void UpdateCash(int newTotal)

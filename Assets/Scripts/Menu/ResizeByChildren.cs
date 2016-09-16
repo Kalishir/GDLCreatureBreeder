@@ -6,7 +6,7 @@ public class ResizeByChildren : MonoBehaviour {
 
     [SerializeField] private int heightOfChildObject;
     private GridLayoutGroup layoutGroup;
-    private int lastChildCount;
+    private int lastChildCount = 0;
 
 	// Use this for initialization
 	void Start ()
@@ -27,7 +27,7 @@ public class ResizeByChildren : MonoBehaviour {
     public void UpdateSizing()
     {
         RectTransform newSize = transform as RectTransform;
-        int newHeight = (transform.childCount/4 * heightOfChildObject) + (transform.childCount/4 + 1) * Mathf.RoundToInt(layoutGroup.spacing.y);
+        int newHeight = ( Mathf.CeilToInt(transform.childCount/4f) * heightOfChildObject) + (Mathf.CeilToInt(transform.childCount/4f) + 1) * Mathf.RoundToInt(layoutGroup.spacing.y);
         newHeight += layoutGroup.padding.top + layoutGroup.padding.bottom;
         var parent = transform.parent as RectTransform;
         newHeight -= Mathf.RoundToInt(parent.rect.height);

@@ -1,10 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 [System.Serializable]
 public class CreatureList
 {
+    public event UnityAction<Creature> CreatureAdded;
+    public event UnityAction<Creature> CreatureRemoved;
+
     [SerializeField] private List<Creature> creatures;
     // TODO: Refactor so that creatures cannot be added directly to the list;
 
@@ -37,11 +41,8 @@ public class CreatureList
     /// </summary>
     public void AddCreature(CreatureData creatureData)
     {
-        if (Creatures.Count < Creatures.Capacity)
-        {
-            Creature newCreature = new Creature(creatureData);
-            creatures.Add(newCreature);
-        }
+        Creature newCreature = new Creature(creatureData);
+        AddCreature(newCreature);
         
     }
 
@@ -53,6 +54,11 @@ public class CreatureList
         if (Creatures.Count < Creatures.Capacity)
         {
             creatures.Add(creature);
+            if (CreatureAdded != null)
+            {
+                Debug.Log("CreatureAdded");
+                CreatureAdded(creature);
+            }
         }
     }
 
@@ -62,6 +68,8 @@ public class CreatureList
     public void RemoveCreature(Creature creature)
     {
         creatures.RemoveAll((x) => { return x.ID == creature.ID; });
+        if (CreatureRemoved != null)
+            CreatureRemoved(creature);
     }
 
 }

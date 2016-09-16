@@ -9,6 +9,7 @@ public class CashUpdater : MonoBehaviour
     void Start()
     {
         text = transform.Find("Text").GetComponent<Text>();
+        UpdateCash(PlayerMoney.Instance.Money);
         PlayerMoney.Instance.MoneyChanged += UpdateCash;
     }
 

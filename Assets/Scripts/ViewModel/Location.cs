@@ -19,10 +19,7 @@ public class Location : MonoBehaviour
         }
     }
 
-
-
-	// Use this for initialization
-	void Start ()
+	void Awake ()
     {
         creatures = new CreatureList(locationInformation.CreatureCapacity);
     }

@@ -39,6 +39,7 @@ GameObject:
   - 222: {fileID: 222000010152178202}
   - 114: {fileID: 114000010936045894}
   - 114: {fileID: 114000010658986832}
+  - 114: {fileID: 114000013505186356}
   m_Layer: 5
   m_Name: CreaturePanel
   m_TagString: Untagged
@@ -72,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8270792, g: 0.5955882, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.154}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -114,6 +115,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114000013505186356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012150543962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2270057a2adad504db0f88540cd9e0cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureSprite: {fileID: 114000012958445484}
 --- !u!222 &222000010152178202
 CanvasRenderer:
   m_ObjectHideFlags: 1
